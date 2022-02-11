@@ -1,14 +1,14 @@
 parallel.ru  разделы MPI, OpenMP
 
+OpenMP:
+http://openmp.org/
+
 стандарт MPI:
 реализация MPICH:
 http://www.mpich.org/
 http://www.mpich.org/downloads/
 реализация Microsoft MPI:
 https://msdn.microsoft.com/en-us/library/bb524831(v=vs.85).aspx
-
-OpenMP:
-http://openmp.org/
 
 Intel Parallel Studio XE:
 https://software.intel.com/ru-ru/intel-parallel-studio-xe

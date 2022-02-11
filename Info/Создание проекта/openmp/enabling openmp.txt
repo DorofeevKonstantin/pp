@@ -1,0 +1,4 @@
+gcc -fopenmp
+cl /openmp
+https://docs.microsoft.com/ru-ru/cpp/build/reference/openmp-enable-openmp-2-0-support?view=msvc-170
+vs project properties -> c/c++ -> language -> open mp support

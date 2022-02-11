@@ -1,0 +1,2 @@
+https://docs.microsoft.com/ru-ru/cpp/parallel/openmp/a-examples?view=msvc-170
+https://www.openmp.org/wp-content/uploads/openmp-examples-4.5.0.pdf
