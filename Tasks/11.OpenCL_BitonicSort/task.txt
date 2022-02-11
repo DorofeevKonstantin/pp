@@ -1,0 +1,4 @@
+Реализовать bitonic sort с помощью OpenCL на GPU.
+Сравнить по производительности с std::sort или qsort на CPU.
+
+https://en.wikipedia.org/wiki/Bitonic_sorter

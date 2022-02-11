@@ -1,0 +1,28 @@
+Создание проекта WinForms (c++ CLI) в Visual Studio 2015:
+
+Файл->Создать->Проект->Шаблоны Visual C++->CLR->Empty project
+
+Свойства проекта:
+Свойства конфигурации->Компоновщик->Система->Подсистема 
+Windows (/SUBSYSTEM:WINDOWS).
+Свойства конфигурации->Компоновщик->Дополнительно->Точка входа
+main
+
+В обозревателе решений правой по имени вашего проекта
+Добавить->Создать элемент->Visual c++->UI->Форма WinForms
+
+в созданный файл исходного кода MyForm.cpp добавляем следующий код:
+
+#include "MyForm.h" //the header name for your form
+using namespace Project1; //name of your project
+[STAThreadAttribute]
+int main(array<System::String ^> ^args)
+{
+    Application::EnableVisualStyles();
+    Application::SetCompatibleTextRenderingDefault(false);
+ 
+    Application::Run(gcnew MyForm());
+    return 0;
+}
+
+build

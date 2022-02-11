@@ -1,0 +1,12 @@
+A:link    { color: blue; text-decoration: none }
+A:visited { color: blue; text-decoration: none }
+h1 {color: #000080; text-align: center }
+h2 {color: #800080}
+h3 {color: #800000; text-align: center}
+h4 { text-indent: 2em; margin-bottom: 0em}
+strong { font-weight: bold }
+strong.feature {color: #00008B; font-weight: bold }
+p {text-indent: 2em; margin-top: 0.5em; text-align: justify }
+p.copyright { text-align: right; }
+p.formula { text-align: center; }
+

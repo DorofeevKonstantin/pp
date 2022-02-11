@@ -1,0 +1,28 @@
+parallel.ru  разделы MPI, OpenMP
+
+стандарт MPI:
+реализация MPICH:
+http://www.mpich.org/
+http://www.mpich.org/downloads/
+реализация Microsoft MPI:
+https://msdn.microsoft.com/en-us/library/bb524831(v=vs.85).aspx
+
+OpenMP:
+http://openmp.org/
+
+Intel Parallel Studio XE:
+https://software.intel.com/ru-ru/intel-parallel-studio-xe
+
+OpenACC:
+http://www.openacc.org/
+
+CUDA:
+http://www.nvidia.ru/object/cuda-parallel-computing-ru.html
+http://www.nvidia.ru/object/cuda-parallel-computing-almanac-ru.html
+для скачивания:
+https://developer.nvidia.com/cuda-downloads
+https://developer.nvidia.com/cuda-toolkit-archive
+https://developer.nvidia.com/cuda-example
+
+OpenCL:
+https://www.khronos.org/opencl/

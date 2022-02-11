@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0126)https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&cs-lang=cpp#code-snippet-1 -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="ru-ru"><link rel="canonical" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx">
+    <title>Делегат ThreadStart (System.Threading)</title>
+
+
+
+
+
+
+
+<meta name="DCS.dcsuri" content="/ru-ru/library/57s77029(d=default,l=ru-ru,v=vs.110).aspx">
+
+<meta name="NormalizedUrl" content="https://msdn.microsoft.com/ru-ru/library/57s77029(d=default,l=ru-ru,v=vs.110).aspx">
+
+<meta name="ms.normalizedurl" content="https://msdn.microsoft.com/ru-ru/library/57s77029(d=default,l=ru-ru,v=vs.110).aspx">
+
+<meta name="ms.prod" content=".net-framework-4.6">
+
+<meta name="ms.devlang" content="csharp">
+
+<meta name="ms.topic" content="managed-reference">
+
+<meta name="AmbientContext" content="{&quot;layout.limit_max_width&quot;:true,&quot;AmbientContextId&quot;:&quot;9A5A0A04-CFC3-4903-A3CC-F25CEC4DB4A9&quot;,&quot;display.use_large_font&quot;:false,&quot;insight.perf_timing&quot;:true,&quot;AmbientContextDownstream&quot;:{&quot;LogTrace&quot;:false},&quot;display.high_contrast&quot;:false,&quot;insight.use_wedcs_vnext&quot;:true}">
+
+<meta name="VotingContextUrl" content="https://msdn.microsoft.com/ru-ru/library/57s77029(d=default,l=ru-ru,v=vs.110).aspx">
+
+<meta name="MN" content="61C41DD4-12:32:24 AM">
+
+<meta name="Search.ShortId" content="57s77029">
+
+<meta name="ms.shortidmsdn" content="57s77029">
+
+<meta name="ms.locale" content="ru-ru">
+
+<meta name="ms.prodver" content="VS.110">
+
+<meta name="ms.contentlang" content="RU">
+
+<meta name="ms.lang" content="RU">
+
+<meta name="ms.loc" content="RU">
+
+<meta name="ms.sitever" content="2017.02.09.1">
+
+<meta name="ms.assetid" content="T:System.Threading.ThreadStart">
+
+<meta name="ms.auth" content="0">
+
+<meta name="ms.technology" content="dotnet-bcl">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+        
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Делегат ThreadStart (System.Threading)_files/ai.0.js.Без названия" async=""></script><script type="text/javascript" data-do-not-move="true">
+        //<![CDATA[
+        var AmbientContext = null;
+
+        (function(){
+            var root = (function(){return this;}).call(null);
+
+            var GetCookie = function(name){
+                var cookies = root.document.cookie ? root.document.cookie.split('; ') : [];
+                for (var i = 0; i < cookies.length; i++) {
+                    var pos = cookies[i].indexOf('=');
+                    if (name === root.decodeURIComponent(cookies[i].slice(0, pos)))
+                    {
+                        var cookie = cookies[i].slice(pos + 1).replace(/\+/g, ' ');
+                        cookie = root.decodeURIComponent(cookie);
+                        return cookie;
+                    }
+                }
+            };
+
+            var JsonDeserialize = function(content) {
+                return root.JSON && root.JSON.parse ? root.JSON.parse(content) : (new Function('return (' + content + ')'))();
+            };
+
+            try {
+                AmbientContext = GetCookie('AmbientContext');
+                AmbientContext = AmbientContext && JsonDeserialize(AmbientContext);
+            } catch(ex) {
+            } finally {
+                AmbientContext = AmbientContext || null;
+            }
+        })();
+        //]]>
+    </script>
+
+    <script type="text/javascript" src="./Делегат ThreadStart (System.Threading)_files/jquery-1.9.1.min.js.Без названия" data-do-not-move="true" data-provides="jQuery"></script>
+    
+<link rel="stylesheet" type="text/css" href="./Делегат ThreadStart (System.Threading)_files/Combined.css"><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "https://i-msdn.sec.s-msft.com", 
+	"js": "https://i2-msdn.sec.s-msft.com", 
+	"css": "https://i-msdn.sec.s-msft.com", 
+	"ttf": "https://i-msdn.sec.s-msft.com"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected">try {
+//
+
+        window.appInsightsId = '5eb1b2eb-c47a-497a-a7ac-a1c230b2882f';
+        //
+} finally { MTPS._injectNextScript_1 && MTPS._injectNextScript_1(); }</script><script class="mtps-injected" src="./Делегат ThreadStart (System.Threading)_files/Combined.js.Без названия"></script><link href="./Делегат ThreadStart (System.Threading)_files/PrintView.css" rel="stylesheet" type="text/css" media="print"><meta name="ms.layout_limit_max_width" content="true"><meta name="ms.AmbientContextId" content="9A5A0A04-CFC3-4903-A3CC-F25CEC4DB4A9"><meta name="ms.display_use_large_font" content="false"><meta name="ms.insight_perf_timing" content="true"><meta name="ms.AmbientContextDownstream" content="%7B%7D"><meta name="ms.display_high_contrast" content="false"><meta name="ms.insight_use_wedcs_vnext" content="true"><meta name="ms.perf.timing" content=",,0,0,0,4,739,768,748,1043,1044,1155,,,"><script type="text/javascript" src="./Делегат ThreadStart (System.Threading)_files/ms.js.Без названия"></script><script type="text/javascript" src="./Делегат ThreadStart (System.Threading)_files/jsll-3.2.0.js.Без названия"></script><script class="mtps-injected" src="./Делегат ThreadStart (System.Threading)_files/SearchBox.jss"></script><script class="mtps-injected" src="./Делегат ThreadStart (System.Threading)_files/JumpRedirect.js.Без названия"></script><script class="mtps-injected">try {
+//
+    MTPS = window.MTPS || {};
+    MTPS.Translation = window.MTPS.Translation || {};
+
+    MTPS.Translation.TranslationType =  0;
+    
+    
+        
+        MTPS.Translation.EditorLink = {
+            includeEditor : 0,
+            editLink: "https://msdn.microsoft.com/ru-ru/library/translation/edit/system.threading.threadstart(v=vs.110).aspx",
+            editLinkText: "Предложите более удачный вариант перевода"
+        };
+        
+    //
+} finally { MTPS._injectNextScript_5 && MTPS._injectNextScript_5(); }</script><script class="mtps-injected" src="./Делегат ThreadStart (System.Threading)_files/Combined.js(1).Без названия"></script><script class="mtps-injected">try {
+MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = 'Развернуть'; MTPS.LocalizedStrings.CollapseButtonTooltip = 'Свернуть'; MTPS.LocalizedStrings.EnhancedExpandTooltip = 'Щелкните, чтобы развернуть. Щелкните дважды, чтобы развернуть все.'; MTPS.LocalizedStrings.EnhancedCollapseTooltip = 'Щелкните, чтобы свернуть. Щелкните дважды, чтобы свернуть все.'; MTPS.LocalizedStrings.ExpandAllButtonTooltip = 'Развернуть все'; MTPS.LocalizedStrings.CollapseAllButtonTooltip = 'Свернуть все';
+} finally { MTPS._injectNextScript_7 && MTPS._injectNextScript_7(); }</script><script class="mtps-injected" src="./Делегат ThreadStart (System.Threading)_files/Combined.js(2).Без названия"></script><script src="./Делегат ThreadStart (System.Threading)_files/broker.js.Без названия"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_9 && MTPS._injectNextScript_9(); }</script></head>
+<body class="library Chrome">
+    <div id="page">
+
+        
+
+        
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+        
+    <input type="hidden" id="isHeaderBleeding" value="true">
+    <div id="ux-header" dir="ltr" class="ltr msdn" ms.pgarea="header" data-device-type="desktop">
+        
+
+      <header ms.pgarea="header">
+        <span id="singleCol"></span>
+        <span id="doubleCol"></span>
+        <span id="isMobile"></span>
+        <div>
+          <div class="row topRow" role="banner">
+            <div class="top">
+              <div class="left">
+                <a class="msdnLogoImg" href="https://msdn.microsoft.com/ru-ru" title="MSDN home" ms.cmpgrp="mslogo">
+                  <div class="clip70x15">
+                    <img alt="Microsoft Logo" id="msft-logo" class="msft-logo" src="./Делегат ThreadStart (System.Threading)_files/HeaderFooterSprite.png">
+                  </div>
+                </a>
+                <div class="GrayPipeDiv clip1x18">
+                  <img alt="Gray Pipe" class="GrayPipe" src="./Делегат ThreadStart (System.Threading)_files/HeaderFooterSprite.png">
+                </div>
+                  <a class="DevCenterFullNameNonMegaBlade" href="https://msdn.microsoft.com/ru-ru">Developer Network</a>
+                <a class="DevCenterFullName" href="https://msdn.microsoft.com/ru-ru">Developer Network</a>
+                <a class="DevCenterShortName" href="https://msdn.microsoft.com/ru-ru">Developer</a>
+              </div>
+              <div class="right" ms.cmpgrp="aux nav">
+                <div id="signIn" aria-label="Profile button">
+
+  <div class="profileImage"></div>
+
+
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=13&amp;ct=1488789144&amp;rver=6.7.6640.0&amp;wp=mcmbi&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=https%3a%2f%2fmsdn.microsoft.com%2fru-ru%2flibrary%2fsystem.threading.threadstart%2528v%3dvs.110%2529.aspx%3fcs-save-lang%3d1%26cs-lang%3dcpp&amp;lc=1049&amp;id=254354&amp;mkt=ru-ru">Войти</a></div>
+
+
+
+
+                <div class="auxNav">
+                  <div>
+                    <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://msdn.microsoft.com/subscriptions/manage/hh442900" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">
+    <span style="line-height:18px;" xmlns="">Подписки MSDN</span>
+  </a>
+</div>
+                    <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://go.microsoft.com/fwlink/?LinkId=309297&amp;clcid=0x419&amp;slcid=0x419&amp;campaign=o~msft~msdn~gettools-header~dn308572" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">
+    <span style="line-height:18px;" xmlns="">Получить инструменты</span>
+  </a>
+</div>
+                  </div>
+                        <div>
+                            
+                        </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row middleRow">
+            <div class="expandTop" style="display: none;">
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+          </div>
+        </div>
+        <div id="buttomRowWrapper" class="bg_default">
+          <div class="row buttomRow bg_default">
+            <div class="bottom">
+              <div class="left" role="navigation" aria-label="header toc" ms.cmpgrp="main nav">
+                <a id="grip" class="menu-icon" href="javascript:void(0)" role="button" aria-label="navigation menu"></a>
+                
+                <div id="drawer">
+                  <div class="toc">
+                    
+        <nav>
+            <ul class="navL1" ms.cmpgrp="main nav">
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Загрузки</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://www.visualstudio.com/ru/downloads/" role="link" title="Visual Studio">Visual Studio</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/microsoft-sdks-msdn" role="link" title="Пакеты SDK">Пакеты SDK</a>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Пробные версии программ" role="button" aria-expanded="false">Пробные версии программ</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/evalcenter" title="Бесплатное скачивание" role="link">Бесплатное скачивание</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/officeevaluationresources" title="Ресурсы Office" role="link">Ресурсы Office</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sharepoint2013resources" title="Ресурсы Microsoft SharePoint Server 2013" role="link">Ресурсы Microsoft SharePoint Server 2013</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sqlserver2014expressresources" title="Ресурсы Microsoft SQL Server 2014 Express" role="link">Ресурсы Microsoft SQL Server 2014 Express</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/windowsserver2012r2resources" title="Материалы Windows Server 2012 R2" role="link">Материалы Windows Server 2012 R2</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Программы</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/msdn-subscriptions-administration" role="link" title="Подписки администраторам">Подписки администраторам</a>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Студентам" role="button" aria-expanded="false">Студентам</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/imagine/imagine-home" title="Microsoft Imagine" role="link">Microsoft Imagine</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/microsoftstudentpartners" title="Программа Microsoft Student Partners" role="link">Программа Microsoft Student Partners</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://www.microsoft.com/ru-ru/isvs" role="link" title="ISV">ISV</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://www.microsoft.com/ru-ru/ms-start" role="link" title="Стартапам">Стартапам</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://events.microsoft.com/" role="link" title="Мероприятия">Мероприятия</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Сообщество</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/magazine/dd767791" role="link" title="Журнал MSDN">Журнал MSDN</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://social.msdn.microsoft.com/forums/" role="link" title="Форумы">Форумы</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://blogs.msdn.microsoft.com/rudevnews/" role="link" title="Блог">Блог</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="http://channel9.msdn.com/" role="link" title="Канал Channel 9">Канал Channel 9</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive current toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Документация</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive current">
+
+                                                <a href="https://msdn.microsoft.com/library" role="link" title="API и справочники">API и справочники</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/developer-centers-msdn" role="link" title="Центры разработки">Центры разработки</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://code.msdn.microsoft.com/" role="link" title="Примеры кода">Примеры кода</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/retiredcontent" role="link" title="Более не поддерживаемое содержимое">Более не поддерживаемое содержимое</a>
+                                        </li>
+                                </ul>
+                        </li>
+            </ul>
+        </nav>
+
+                  </div>
+                </div>
+              </div>
+              <div class="right" ms.title="search" role="search">
+                <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get">
+      <button id="FakeHeaderSearchButton" value="Search" type="submit" class="header-search-button" role="button" aria-label="search finder" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon">
+        <div id="search-finder-div" class="clip16x20">
+          <img alt="search finder" id="search-finder" class="search-finder" src="./Делегат ThreadStart (System.Threading)_files/HeaderFooterSprite.png">
+        </div>
+      </button>
+      <button id="HeaderSearchButton" style="display:none" data-searchtype="icon" data-pgarea="header" title="Поиск в MSDN" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon"></button>
+      <div id="searchSplitter"></div>
+      <div id="searchCloseIconDiv" class="clip16x20" tabindex="0">
+        <img alt="search clear" id="searchCloseIcon" class="search-clear-x" src="./Делегат ThreadStart (System.Threading)_files/HeaderFooterSprite.png">
+      </div>
+      <div id="searchTextContainer" style="width: 0px; display: none;"><p role="alert" style="height: 1px;width: 1px;overflow: hidden;position: absolute;"></p>
+        <input id="HeaderSearchTextBox" name="query" type="text" aria-label="Search Input Box" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off" data-searchtype="searchbox" role="combobox" aria-autocomplete="both" aria-owns="MSDNSearchAutoCompleteList" aria-live="polite" placeholder="" data-pgarea="header" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="enter-key">
+      <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; background-color: rgb(255, 255, 255); color: rgb(255, 255, 255); font-family: Arial; font-size: 16px;"><div id="SuggestionContainer"><ul data-pgarea="header" data-searchtype="search dropdown" id="MSDNSearchAutoCompleteList" role="listbox" aria-controls="HeaderSearchTextBox" style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="suggested keyword"></ul></div></div></div>
+    </form>
+    
+    
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </header>
+
+    <div id="overlayMaskHeader"></div></div>
+
+    
+    
+    
+    <div id="jumpInfo" style="display: none">Приносим извинения. Запрошенное содержимое было удалено. Вы будете автоматически перенаправлены через 1 секунду.</div>
+
+
+
+
+
+<link type="text/css" rel="stylesheet">
+<link type="text/css" rel="stylesheet">
+
+
+    <div id="breadcrumbs" ms.pgarea="body" ms.cmpgrp="breadcrumbs">
+        <div id="breadcrumbDesktop" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/ru-ru/library/w0x726c2(v=vs.110).aspx" title=".NET Framework 4.6 and 4.5"></a></span>
+                        <span><a href="https://msdn.microsoft.com/ru-ru/library/mt472912(v=vs.110).aspx" title="Библиотека классов .NET Framework"><span>Библиотека классов .NET Framework</span></a></span>
+                        <span><a href="https://msdn.microsoft.com/ru-ru/library/mt481587(v=vs.110).aspx" title="System.Threading Пространства имен"><span>System.Threading Пространства имен</span></a></span>
+                        <span class="breadcrumbDropSmall">
+                            <a id="breadcrumbDropDownButton" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#" targethref="https://msdn.microsoft.com/ru-ru/library/mt481587(v=vs.110).aspx" title="System.Threading" role="button" aria-expanded="false"><span>System.Threading</span></a>
+                        </span>
+        </div>
+        <div id="breadcrumbDropDownMenu" style="display: none;"></div>
+
+        <div id="breadcrumbTablet" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/ru-ru/library/mt481587(v=vs.110).aspx" title="System.Threading Пространства имен"></a></span>
+                    <span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading(v=vs.110).aspx" title="System.Threading"><span>System.Threading</span></a></span>
+                <span class="breadcrumbDropSmall"><a id="tocDropDownButton" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#" title="ThreadStart Делегат" role="button" aria-expanded="false"><span>ThreadStart Делегат</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(d=printer,v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp" rel="nofollow"><ins class="print"></ins>Печать </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/ru-ru/library/export/help/?returnurl=%2fru-ru%2flibrary%2fsystem.threading.threadstart(v%3dvs.110).aspx%3fcs-save-lang%3d1%26cs-lang%3dcpp">
+                <ins class="export"></ins>Экспорт (<span class="count">0</span>)
+            </a>
+        </div></div>
+        <div id="tocDropDownMenu" style="display: none;"></div>
+        <div id="breadcrumbMobile" class="breadCrumb">
+                <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading(v=vs.110).aspx" title="System.Threading"></a></span>
+            <span class="breadcrumbDropSmall"><a id="tocPopupButton" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#" title="ThreadStart Делегат" role="button" aria-expanded="false"><span>ThreadStart Делегат</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(d=printer,v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp" rel="nofollow"><ins class="print"></ins>Печать </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/ru-ru/library/export/help/?returnurl=%2fru-ru%2flibrary%2fsystem.threading.threadstart(v%3dvs.110).aspx%3fcs-save-lang%3d1%26cs-lang%3dcpp">
+                <ins class="export"></ins>Экспорт (<span class="count">0</span>)
+            </a>
+        </div></div>
+    </div>
+    <div id="tocPopupMenu" style="display: none;">
+        <div id="tocPopMenuClose" class="tocCloseLarge" role="button" aria-label="Close Popup Menu" tabindex="0"></div>
+        <div id="tocTitle">ThreadStart Делегат</div>        
+    </div>
+
+    
+
+
+        <div id="body" ms.pgarea="body" class="">
+            <span id="tabletView_large"></span>
+            <span id="tabletView_small"></span>
+            <span id="mobileView"></span>
+            
+
+
+
+
+
+
+
+
+
+    <div id="leftNav" ms.cmpgrp="left toc" role="navigation" aria-label="left toc" style="height: 666px;">
+
+    
+
+
+<div id="tocnav" class="ArchiveV2" style="width: 255px; position: fixed; top: 18px;">
+    <div class="tocunselected">
+        <div id="tocExpandArea" style="display: block;">
+            <span class="toc_empty"></span>
+            <span id="tocExpandButton"><a href="javascript:void(0)" aria-label="expand sibling toc" role="button"></a></span>
+        </div>
+        <div id="tocExpand"><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.abandonedmutexexception(v=vs.110).aspx" id="mt543231_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="AbandonedMutexException Класс">AbandonedMutexException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.apartmentstate(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ApartmentState Перечисление">ApartmentState Перечисление</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.asyncflowcontrol(v=vs.110).aspx" id="mt543227_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="AsyncFlowControl Структура">AsyncFlowControl Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/dn906268(v=vs.110).aspx" id="mt543210_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="AsyncLocal(T) Класс">AsyncLocal(T) Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/dn906269(v=vs.110).aspx" id="mt543240_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="AsyncLocalValueChangedArgs(T) Структура">AsyncLocalValueChangedArgs(T) Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.autoresetevent(v=vs.110).aspx" id="mt543217_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="AutoResetEvent Класс">AutoResetEvent Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.barrier(v=vs.110).aspx" id="mt543252_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Barrier Класс">Barrier Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.barrierpostphaseexception(v=vs.110).aspx" id="mt543232_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="BarrierPostPhaseException Класс">BarrierPostPhaseException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.cancellationtoken(v=vs.110).aspx" id="mt543243_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CancellationToken Структура">CancellationToken Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.cancellationtokenregistration(v=vs.110).aspx" id="mt543288_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CancellationTokenRegistration Структура">CancellationTokenRegistration Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.cancellationtokensource(v=vs.110).aspx" id="mt543268_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CancellationTokenSource Класс">CancellationTokenSource Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.compressedstack(v=vs.110).aspx" id="mt543250_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CompressedStack Класс">CompressedStack Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.contextcallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ContextCallback Делегат">ContextCallback Делегат</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.countdownevent(v=vs.110).aspx" id="mt543280_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CountdownEvent Класс">CountdownEvent Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.eventresetmode(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="EventResetMode Перечисление">EventResetMode Перечисление</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.eventwaithandle(v=vs.110).aspx" id="mt543263_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="EventWaitHandle Класс">EventWaitHandle Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.executioncontext(v=vs.110).aspx" id="mt543253_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ExecutionContext Класс">ExecutionContext Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.hostexecutioncontext(v=vs.110).aspx" id="mt543277_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HostExecutionContext Класс">HostExecutionContext Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.hostexecutioncontextmanager(v=vs.110).aspx" id="mt468522_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="HostExecutionContextManager Класс">HostExecutionContextManager Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.interlocked(v=vs.110).aspx" id="mt543282_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Interlocked Класс">Interlocked Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.iocompletioncallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="IOCompletionCallback Делегат">IOCompletionCallback Делегат</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.lazyinitializer(v=vs.110).aspx" id="mt543293_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="LazyInitializer Класс">LazyInitializer Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.lazythreadsafetymode(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="LazyThreadSafetyMode Перечисление">LazyThreadSafetyMode Перечисление</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.lockcookie(v=vs.110).aspx" id="mt543313_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="LockCookie Структура">LockCookie Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.lockrecursionexception(v=vs.110).aspx" id="mt543304_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="LockRecursionException Класс">LockRecursionException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/bb302197(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="LockRecursionPolicy Перечисление">LockRecursionPolicy Перечисление</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.manualresetevent(v=vs.110).aspx" id="mt543295_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ManualResetEvent Класс">ManualResetEvent Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.manualreseteventslim(v=vs.110).aspx" id="mt543312_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ManualResetEventSlim Класс">ManualResetEventSlim Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.monitor(v=vs.110).aspx" id="mt543323_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Monitor Класс">Monitor Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.mutex(v=vs.110).aspx" id="mt543326_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Mutex Класс">Mutex Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.nativeoverlapped(v=vs.110).aspx" id="mt543306_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="NativeOverlapped Структура">NativeOverlapped Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.overlapped(v=vs.110).aspx" id="mt543316_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Overlapped Класс">Overlapped Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.parameterizedthreadstart(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ParameterizedThreadStart Делегат">ParameterizedThreadStart Делегат</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.readerwriterlock(v=vs.110).aspx" id="mt543353_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ReaderWriterLock Класс">ReaderWriterLock Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.readerwriterlockslim(v=vs.110).aspx" id="mt543378_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ReaderWriterLockSlim Класс">ReaderWriterLockSlim Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.registeredwaithandle(v=vs.110).aspx" id="mt543350_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="RegisteredWaitHandle Класс">RegisteredWaitHandle Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.semaphore(v=vs.110).aspx" id="mt543365_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Semaphore Класс">Semaphore Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.semaphorefullexception(v=vs.110).aspx" id="mt543360_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SemaphoreFullException Класс">SemaphoreFullException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.semaphoreslim(v=vs.110).aspx" id="mt543363_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SemaphoreSlim Класс">SemaphoreSlim Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.sendorpostcallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SendOrPostCallback Делегат">SendOrPostCallback Делегат</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.spinlock(v=vs.110).aspx" id="mt543367_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SpinLock Структура">SpinLock Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.spinwait(v=vs.110).aspx" id="mt532040_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SpinWait Структура">SpinWait Структура</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.synchronizationcontext(v=vs.110).aspx" id="mt532050_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SynchronizationContext Класс">SynchronizationContext Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.synchronizationlockexception(v=vs.110).aspx" id="mt532054_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="SynchronizationLockException Класс">SynchronizationLockException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread(v=vs.110).aspx" id="mt532063_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Thread Класс">Thread Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadabortexception(v=vs.110).aspx" id="mt532044_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadAbortException Класс">ThreadAbortException Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadexceptioneventargs(v=vs.110).aspx" id="mt543374_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadExceptionEventArgs Класс">ThreadExceptionEventArgs Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadexceptioneventhandler(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadExceptionEventHandler Делегат">ThreadExceptionEventHandler Делегат</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadinterruptedexception(v=vs.110).aspx" id="mt532049_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadInterruptedException Класс">ThreadInterruptedException Класс</a>                </div></div>
+    <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/dd642243(v=vs.110).aspx" id="mt532055_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadLocal(T) Класс">ThreadLocal(T) Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadpool(v=vs.110).aspx" id="mt532059_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadPool Класс">ThreadPool Класс</a>                </div><div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadpriority(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadPriority Перечисление">ThreadPriority Перечисление</a>                </div></div>
+    <div class="tocselected"><div class="toclevel current" data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadStart Делегат">ThreadStart Делегат</a>                </div><div class="tocPadding"></div></div>
+    <div class="tocunselected">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstartexception(v=vs.110).aspx" id="mt532069_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadStartException Класс">ThreadStartException Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstate(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadState Перечисление">ThreadState Перечисление</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstateexception(v=vs.110).aspx" id="mt532065_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="ThreadStateException Класс">ThreadStateException Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.timeout(v=vs.110).aspx" id="mt532061_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Timeout Класс">Timeout Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.timer(v=vs.110).aspx" id="mt532110_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Timer Класс">Timer Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.timercallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="TimerCallback Делегат">TimerCallback Делегат</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.volatile(v=vs.110).aspx" id="mt468519_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Volatile Класс">Volatile Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.waitcallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WaitCallback Делегат">WaitCallback Делегат</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.waithandle(v=vs.110).aspx" id="mt532107_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WaitHandle Класс">WaitHandle Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.waithandlecannotbeopenedexception(v=vs.110).aspx" id="mt532080_VS.110_ru-RU" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WaitHandleCannotBeOpenedException Класс">WaitHandleCannotBeOpenedException Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Развернуть оглавление" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/ru-ru/library/system.threading.waithandleextensions(v=vs.110).aspx" id="mt532078_VS.110_ru-ru" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WaitHandleExtensions Класс">WaitHandleExtensions Класс</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.waitortimercallback(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="WaitOrTimerCallback Делегат">WaitOrTimerCallback Делегат</a>                </div>
+    </div>
+    <a id="tocMenuToggler" href="javascript:void(0)" role="button">
+        <span id="tocMenuTogglerIcon" class="tocMenuCollapse" role="button" aria-expanded="true" aria-label="Table of contents menu"></span>
+        <div id="tocMenuTogglerLabel">TOC</div>
+    </a>
+</div>            <div style="display:none">
+                <div id="CollapseLocalizeString">Свернуть оглавление</div>
+                <div id="ExpandLocalizeString">Развернуть оглавление</div>
+            </div>
+        <div>
+            <a id="isd_archiveControlResponsive" style="display:none;" href="javascript:void(0)" role="button" aria-label="Скрыть архивные версии" data-include-archive="Показать архивные версии" data-exclude-archive="Скрыть архивные версии">
+            </a>
+            <div id="isd_archiveInstrument" style="display:none">Эта документация перемещена в архив и не поддерживается.</div>
+        </div>
+    </div>
+     <div id="content" class="content" ms.cmpgrp="content body" role="main">
+
+
+
+<div id="MTPSTranslator" class="MTPSTranslator">
+    <table class="MTPSTranslatorTable" style="width: 100%">
+        <tbody><tr>
+            <td class="TranslationAlertBox">
+                <div>Данная статья переведена с помощью средств машинного перевода. Чтобы просмотреть ее на английском языке, установите флажок Английский. Вы также можете просматривать английский текст во всплывающем окне, наводя указатель мыши на переведенный текст.</div>
+            </td>
+                <td class="TranslationViewSwitcher">
+                    <div>
+                        <input title="Показать перевод" value="0" name="TrnaslatorView" type="radio" class="translatechoice" checked="checked" ms.title="translated" ms.cmptyp="language selector" ms.interactiontype="16"><span>Перевод</span>
+                    </div>
+                    <div>
+                        <input title="Показать текст на английском языке" value="1" name="TrnaslatorView" type="radio" class="translatechoice" ms.title="original" ms.cmptyp="language selector" ms.interactiontype="16"><span>Английский</span>
+                    </div>
+                </td>
+        </tr>
+    </tbody></table>
+</div>
+    
+    
+    
+     
+
+
+
+
+
+
+
+    <div id="archiveDisclaimerText" style="display:none">Эта документация перемещена в архив и не поддерживается.</div>
+
+
+
+<div xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="topic">
+    <h1 class="title">Делегат ThreadStart</h1>
+    
+    <div class="lw_vs">
+      <div id="curversion">
+        <strong>
+                .NET Framework (current version)
+            </strong>
+      </div>
+      <div id="versionclick">
+        <div id="vsseperator" class="cl_lw_vs_seperator"></div>
+        <div>
+          <div>
+            <a id="vsLink" href="javascript:void(0)" role="button" aria-label="Другие версии" aria-expanded="false">
+                        Другие версии
+                    </a>
+          </div>
+          <div class="cl_vs_arrow clip10x10">
+            <img class="cl_lw_vs_arrow" id="vsArrow" alt="" src="./Делегат ThreadStart (System.Threading)_files/ImageSprite.png">
+          </div>
+        </div>
+        <ul id="vsPanel">
+          <li class="archived"><a href="javascript:void(0)" role="img" title="Эта документация перемещена в архив и не поддерживается."></a>
+            <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.100).aspx">Visual Studio 2010</a>
+          </li>
+          <li class="archived"><a href="javascript:void(0)" role="img" title="Эта документация перемещена в архив и не поддерживается."></a>
+            <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.100).aspx">.NET Framework 4</a>
+          </li>
+          <li class=""><span class="emptyArchiveIcon"></span>
+            <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.95).aspx">Silverlight </a>
+          </li>
+          <li class="archived"><a href="javascript:void(0)" role="img" title="Эта документация перемещена в архив и не поддерживается."></a>
+            <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.90).aspx">.NET Framework 3.5</a>
+          </li>
+          <li class="archived"><a href="javascript:void(0)" role="img" title="Эта документация перемещена в архив и не поддерживается."></a>
+            <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.90).aspx">Visual Studio 2008</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div id="mainSection">
+      <div id="mainBody">&nbsp;<p>Опубликовано: Октябрь 2016</p><div class="section"><div class="section"><p><span id="mt1" class="sentence" data-guid="a5436ac56d92880446667b245465519f" data-source="Represents the method that executes on a &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Thread&lt;/span&gt;&lt;/span&gt;." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">Представляет метод, который выполняется на <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread(v=vs.110).aspx">Thread</a>.</sentencetext></span></p></div><strong>Пространство имен:
+      </strong>
+      &nbsp;
+      <a href="https://msdn.microsoft.com/ru-ru/library/system.threading(v=vs.110).aspx">System.Threading</a><br><strong>Сборка:
+        </strong>&nbsp;mscorlib (в mscorlib.dll)<br><br><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Синтаксис</span></a><div id="Anchor_0" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Anchor_0" class="LW_CollapsibleArea_Anchor_Img" title="Щелкните правой кнопкой мыши, чтобы скопировать ссылку на этот раздел и поделиться ей"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock">
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTab" dir="ltr"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=csharp#code-snippet-1">C#</a></div><div class="codeSnippetContainerTabActive" dir="ltr"><a>C++</a></div><div class="codeSnippetContainerTab" dir="ltr"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=fsharp#code-snippet-1">F#</a></div><div class="codeSnippetContainerTab" dir="ltr"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=vb#code-snippet-1">VB</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Копировать в буфер обмена." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode(&#39;CodeSnippetContainerCode_efa7adfd-2b21-4bab-acf5-e800ceebd301&#39;);" ms.cmptyp="CodeSnippet">Копировать</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_efa7adfd-2b21-4bab-acf5-e800ceebd301" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>[ComVisibleAttribute(<span style="color:Blue;">true</span>)]
+<span style="color:Blue;">public</span> <span style="color:Blue;">delegate</span> <span style="color:Blue;">void</span> ThreadStart()
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+</div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Комментарии</span></a><div id="Anchor_1" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Anchor_1" class="LW_CollapsibleArea_Anchor_Img" title="Щелкните правой кнопкой мыши, чтобы скопировать ссылку на этот раздел и поделиться ей"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><p><span id="mt2" class="sentence" data-guid="e2d18fb851c899a27126354325a37325" data-source="When a managed thread is created, the method that executes on the thread is represented by a &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; delegate or a &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;ParameterizedThreadStart&lt;/span&gt;&lt;/span&gt; delegate that is passed to the &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Thread&lt;/span&gt;&lt;/span&gt; constructor." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">При создании управляемого потока метод, который выполняется в потоке представленного <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> делегировать или <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.parameterizedthreadstart(v=vs.110).aspx">ParameterizedThreadStart</a> делегат, передаваемый <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread.thread(v=vs.110).aspx">Thread</a> конструктор.</sentencetext></span><span id="mt3" class="sentence" data-guid="dcd53b1bb491f7a7686ce37936213beb" data-source=" The thread does not begin executing until the &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Thread&lt;span class=&quot;mtpsTagOuterHtml&quot;  xmlns=&quot;&quot;&gt;&lt;span&gt;.&lt;/span&gt;&lt;/span&gt;Start&lt;/span&gt;&lt;/span&gt; method is called." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> Поток начинает выполнение до <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread.start(v=vs.110).aspx">Thread<span xmlns="">::</span>Start</a> вызывается метод.</sentencetext></span><span id="mt4" class="sentence" data-guid="fb8447a5a7de29fe5edbc3402635d7fd" data-source=" Execution begins at the first line of the method represented by the &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; or &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;ParameterizedThreadStart&lt;/span&gt;&lt;/span&gt; delegate." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> Выполнение начинается в первой строке метода, представленного <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> или <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.parameterizedthreadstart(v=vs.110).aspx">ParameterizedThreadStart</a> делегат.</sentencetext></span></p><div class="alert"><div class="contentTableWrapper"><table summary="table"><tbody><tr><th align="left" scope="col"><span><img id="s-e6f6a65cf14f462597b64ac058dbe1d0-system-media-system-caps-note" alt="System_CAPS_note" src="./Делегат ThreadStart (System.Threading)_files/system.threading.threadstart.s-e6f6a65cf14f462597b64ac058dbe1d0-system-media-system-caps-note(v=vs.110).jpeg" title="System_CAPS_note" xmlns=""></span><span class="alertTitle">Примечание </span></th></tr><tr><td><p><span id="mt5" class="sentence" data-guid="79a8588082c4b00c9d8afc756ce30905" data-source="Visual Basic and C# users can omit the &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; or &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;ParameterizedThreadStart&lt;/span&gt;&lt;/span&gt; delegate constructor when creating a thread." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">Пользователи Visual Basic и C# можно опустить <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> или <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.parameterizedthreadstart(v=vs.110).aspx">ParameterizedThreadStart</a> конструктора делегата при создании потока.</sentencetext></span><span id="mt6" class="sentence" data-guid="20909f218b30a54d3af31be4dd43c2d5" data-source=" In Visual Basic, use the &lt;strong&gt;AddressOf&lt;/strong&gt; operator when passing your method to the &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Thread&lt;/span&gt;&lt;/span&gt; constructor; for example, &lt;span class=&quot;code&quot;&gt;Dim t As New Thread(AddressOf ThreadProc)&lt;/span&gt;." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> В Visual Basic, используйте <strong xmlns="http://www.w3.org/1999/xhtml">AddressOf</strong> оператор при передаче в метод <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread.thread(v=vs.110).aspx">Thread</a> конструктор, например <span class="code" xmlns="http://www.w3.org/1999/xhtml">Dim t As New Thread(AddressOf ThreadProc)</span>.</sentencetext></span><span id="mt7" class="sentence" data-guid="71ccc6966d069375d92af786df8a5eb5" data-source=" In C#, simply specify the name of the thread procedure." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> В C# просто укажите имя процедуры потока.</sentencetext></span><span id="mt8" class="sentence" data-guid="db8626bbde4b97a21ddd17f5ba67747e" data-source=" The compiler selects the correct delegate constructor." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> Компилятор выбирает соответствующий конструктор делегата.</sentencetext></span></p></td></tr></tbody></table></div></div><p><span id="mt9" class="sentence" data-guid="aefc2593962974cbb83d566209aa87f2" data-source="[C++]" xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">[C++]</sentencetext></span></p><div class="alert"><div class="contentTableWrapper"><table summary="table"><tbody><tr><th align="left" scope="col"><span><img id="s-e6f6a65cf14f462597b64ac058dbe1d0-system-media-system-caps-note" alt="System_CAPS_note" src="./Делегат ThreadStart (System.Threading)_files/system.threading.threadstart.s-e6f6a65cf14f462597b64ac058dbe1d0-system-media-system-caps-note(v=vs.110).jpeg" title="System_CAPS_note" xmlns=""></span><span class="alertTitle">Примечание </span></th></tr><tr><td><p><span id="mt10" class="sentence" data-guid="94ea63fe6f4b4b8c5b42b743a43fb7e2" data-source="In version 2.0 of the .NET Framework, creating a &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; delegate for a static method in C++ requires only one parameter: the address of the callback method, qualified by the class name." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">В версии 2.0 платформы .NET Framework создание <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> делегат для статического метода C++ требуется только один параметр: адрес метода обратного вызова, полное имя класса.</sentencetext></span><span id="mt11" class="sentence" data-guid="bfa9a8099e850e83105ef326008f5185" data-source=" In earlier versions two parameters were required when creating a delegate for a static method: zero (null) and the method address." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> В более ранних версиях требовалось два параметра при создании делегата для статического метода: 0 (ноль) и адрес метода.</sentencetext></span><span id="mt12" class="sentence" data-guid="23f6b4312cdaf44be8a5048591b238c7" data-source=" For an instance method, all versions require two parameters: the instance variable and the method address." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> Для метода экземпляра всех версиях требуется два параметра: переменная экземпляра и адрес метода.</sentencetext></span></p></td></tr></tbody></table></div></div></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Примеры</span></a><div id="Anchor_2" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Anchor_2" class="LW_CollapsibleArea_Anchor_Img" title="Щелкните правой кнопкой мыши, чтобы скопировать ссылку на этот раздел и поделиться ей"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><div class="section"><div class="section"><div class="section"><p><span id="mt13" class="sentence" data-guid="e24e00e054098f7c3e0e22f6f7358cef" data-source="The following code example shows the syntax for creating and using a &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; delegate with an instance method and with a static method." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">В следующем примере кода показан синтаксис для создания и использования <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> делегат с методом экземпляра и статический метод.</sentencetext></span></p><p><span id="mt14" class="sentence" data-guid="ce9a51a354e334490814e1c8883b3990" data-source="For another simple example that demonstrates how to create a &lt;span class=&quot;selflink&quot;&gt;ThreadStart&lt;/span&gt; delegate, see the &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Thread&lt;span class=&quot;mtpsTagOuterHtml&quot;  xmlns=&quot;&quot;&gt;&lt;span&gt;.&lt;/span&gt;&lt;/span&gt;Start&lt;span class=&quot;mtpsTagOuterHtml&quot;  xmlns=&quot;&quot;&gt;&lt;span&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; method overload." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml">Другой простой пример, демонстрирующий создание <span class="selflink" xmlns="http://www.w3.org/1999/xhtml">ThreadStart</span> Делегировать см. в разделе <a href="https://msdn.microsoft.com/ru-ru/library/a9fyxz7d(v=vs.110).aspx">Thread<span xmlns="">::</span>Start<span xmlns="">()</span></a> перегрузка метода.</sentencetext></span><span id="mt15" class="sentence" data-guid="eb0c4f59515af5ac57f433673526bdf2" data-source=" For more information about thread creation, see &lt;span class=&quot;mtpsTagOuterHtml&quot; &gt;&lt;span&gt;Creating Threads and Passing Data at Start Time&lt;/span&gt;&lt;/span&gt;." xml:space="preserve"><sentencetext xmlns="http://www.w3.org/1999/xhtml"> Дополнительные сведения о создании потоков см. в разделе <a href="https://msdn.microsoft.com/ru-ru/library/ts553s52(v=vs.110).aspx">Creating Threads and Passing Data at Start Time</a>.</sentencetext></span></p>
+<div id="code-snippet-2" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTab" dir="ltr"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=csharp#code-snippet-2">C#</a></div><div class="codeSnippetContainerTabActive" dir="ltr"><a>C++</a></div><div class="codeSnippetContainerTab" dir="ltr"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=vb#code-snippet-2">VB</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Копировать в буфер обмена." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode(&#39;CodeSnippetContainerCode_45802398-7b9d-4626-a8de-e7c99efc6ea8&#39;);" ms.cmptyp="CodeSnippet">Копировать</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_45802398-7b9d-4626-a8de-e7c99efc6ea8" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre><span style="color:Blue;">using</span> <span style="color:Blue;">namespace</span> System;
+<span style="color:Blue;">using</span> <span style="color:Blue;">namespace</span> System::Threading;
+<span style="color:Blue;">ref class</span> Work
+{
+<span style="color:Blue;">public</span>:
+   <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> DoWork()
+   {
+      Console::WriteLine( <span style="color:#A31515;">"Static thread procedure."</span> );
+   }
+
+   <span style="color:Blue;">int</span> Data;
+   <span style="color:Blue;">void</span> DoMoreWork()
+   {
+      Console::WriteLine( <span style="color:#A31515;">"Instance thread procedure. Data={0}"</span>, Data );
+   }
+
+};
+
+<span style="color:Blue;">int</span> main()
+{
+
+   <span style="color:Green;">// To start a thread using an instance method for the thread </span>
+   <span style="color:Green;">// procedure, specify the object as the first argument of the</span>
+   <span style="color:Green;">// ThreadStart constructor.</span>
+   <span style="color:Green;">//</span>
+   Work^ w = <span style="color:Blue;">gcnew</span> Work;
+   w-&gt;Data = 42;
+   ThreadStart^ threadDelegate = <span style="color:Blue;">gcnew</span> ThreadStart( w, &amp;Work::DoMoreWork );
+   Thread^ newThread = <span style="color:Blue;">gcnew</span> Thread( threadDelegate );
+   newThread-&gt;Start();
+
+   <span style="color:Green;">// To start a thread using a static thread procedure, specify</span>
+   <span style="color:Green;">// only the address of the procedure. This is a change from </span>
+   <span style="color:Green;">// earlier versions of the .NET Framework, which required </span>
+   <span style="color:Green;">// two arguments, the first of which was null (0).</span>
+   <span style="color:Green;">//</span>
+   threadDelegate = <span style="color:Blue;">gcnew</span> ThreadStart( &amp;Work::DoWork );
+   newThread = <span style="color:Blue;">gcnew</span> Thread( threadDelegate );
+   newThread-&gt;Start();
+}
+
+<span style="color:Green;">/* This code example produces the following output (the order 
+   of the lines might vary):
+Static thread procedure.
+Instance thread procedure. Data=42
+ */</span>
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+</div></div></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Информация о версии</span></a><div id="Anchor_3" class="LW_CollapsibleArea_Anchor_Div active"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Anchor_3" class="LW_CollapsibleArea_Anchor_Img" title="Щелкните правой кнопкой мыши, чтобы скопировать ссылку на этот раздел и поделиться ей"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock">
+        <strong>.NET Framework</strong>
+      <br>Доступно с 1.1<br>
+        <strong>Silverlight</strong>
+      <br>Доступно с 2.0<br>
+        <strong>Windows Phone Silverlight</strong>
+      <br>Доступно с 7.0<br></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a class="LW_CollapsibleArea_TitleAhref" title="" role="heading"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">См. также</span></a><div id="Anchor_4" class="LW_CollapsibleArea_Anchor_Div"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Anchor_4" class="LW_CollapsibleArea_Anchor_Img" title="Щелкните правой кнопкой мыши, чтобы скопировать ссылку на этот раздел и поделиться ей"></a></div><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><p><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.parameterizedthreadstart(v=vs.110).aspx">ParameterizedThreadStart</a><br><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread(v=vs.110).aspx">Thread</a><br><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.thread.start(v=vs.110).aspx">Start</a><br><a href="https://msdn.microsoft.com/ru-ru/library/system.appdomain(v=vs.110).aspx">AppDomain</a><br><a href="https://msdn.microsoft.com/ru-ru/library/system.threading(v=vs.110).aspx">Пространство имен System.Threading</a><br><a href="https://msdn.microsoft.com/ru-ru/library/ts553s52(v=vs.110).aspx">Creating Threads and Passing Data at Start Time</a><br></p></div></div><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#mainBody">Вернуться в начало</a><br></div></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Показ:</span>
+        <label>
+            <input type="checkbox" class="libraryFilterInherited" checked="checked" value="Inherit">Унаследовано
+        </label>
+        <label>
+            <input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected">Защищен
+        </label>
+    </div>
+</div>
+    
+<input type="hidden" id="libraryMemberFilterEmptyWarning" value="Для текущих настроек фильтра нет доступных членов.">
+
+
+
+    </div>
+<div id="rightNavigationMenu" ms.cmpgrp="right nav" style="position: fixed; margin-left: 3px; top: 60px;">
+    <div id="mobileButtons">
+        
+    </div>
+    <div id="navMain">
+        <div id="closeNavigation">
+            <a class="tocCloseSmall" id="closeButton"></a>
+        </div>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(d=printer,v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp" rel="nofollow"><ins class="print"></ins>Печать </a>
+            <a id="isd_printABook2" href="https://msdn.microsoft.com/ru-ru/library/export/help/?returnurl=%2fru-ru%2flibrary%2fsystem.threading.threadstart(v%3dvs.110).aspx%3fcs-save-lang%3d1%26cs-lang%3dcpp">
+                <ins class="export"></ins>Экспорт (<span class="count">0</span>)
+            </a>
+            <a id="isdShare" href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#" role="button" aria-expanded="false">
+                <ins class="share"></ins>Общий доступ
+            </a>
+            <div id="socials" style="display: none">
+                <a class="isdFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmsdn.microsoft.com%2Fru-ru%2Flibrary%2Fsystem.threading.threadstart(v%3Dvs.110).aspx" aria-label="Поделиться в Facebook">
+                    <ins class="facebook"></ins>
+                </a>
+                <a class="isdTwitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fmsdn.microsoft.com%2Fru-ru%2Flibrary%2Fsystem.threading.threadstart(v%3Dvs.110).aspx&amp;text=%D0%94%D0%B5%D0%BB%D0%B5%D0%B3%D0%B0%D1%82%20ThreadStart%20(System.Threading)&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fmsdn.microsoft.com%2Fru-ru%2Flibrary%2Fsystem.threading.threadstart(v%3Dvs.110).aspx" aria-label="Поделиться в Twitter">
+                    <ins class="twitter"></ins>
+                </a>
+                <a class="isdGooglePlus" href="https://plus.google.com/share?url=https%3A%2F%2Fmsdn.microsoft.com%2Fru-ru%2Flibrary%2Fsystem.threading.threadstart(v%3Dvs.110).aspx" aria-label="Поделиться в Google+">
+                    <ins class="googlePlus"></ins>
+                </a>
+            </div>
+        </div>
+        <div id="indoc_toc" style="" ms.cmpgrp="indoc toc">
+            <div id="indoc_title">СОДЕРЖАНИЕ СТАТЬИ</div>
+            <ul id="indoc_toclist"><li data-index="0"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Синтаксис">Синтаксис</a></li><li data-index="1" class=""><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Комментарии">Комментарии</a></li><li data-index="2" class=""><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Примеры">Примеры</a></li><li data-index="3" class="active"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#Информация о версии">Информация о версии</a></li><li data-index="4"><a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#См. также">См. также</a></li></ul>
+        </div>
+    </div>
+</div>
+<div id="rightNavigationMenuThumbnail" class="rightNavigationMenuThumbnail">
+</div>
+
+
+
+
+
+        </div>
+        <div class="clear"></div>
+
+        
+
+<input name="__RequestVerificationToken" type="hidden" value="m49-LMG8AXPO1W7Fl2xCf-LZUwihYZMkhvbc423rlShZNJ8nN3wDVOeZM1W0lsFAx2WlM4r_jyeXxUxUYpXZ3zVA2781">
+<input id="ratingValueSubmitUrl" type="hidden" value="https://msdn.microsoft.com/ru-ru/library/feedback/rate/system.threading.threadstart(v=vs.110).aspx">
+<input id="ratingAdditionalSubmitUrl" type="hidden" value="https://msdn.microsoft.com/ru-ru/library/feedback/additional/system.threading.threadstart(v=vs.110).aspx">
+<input id="isTopicRated" type="hidden" value="false">
+
+
+
+
+    <div id="lib-footer">
+        
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+    <div id="ux-footer" class="" style="" dir="ltr" ms.pgarea="footer">
+
+
+    <div id="standardRatingBefore" class="clear stdr-container-before"></div>
+    <div id="standardRating" class="stdr-container stdr-float" ms.pgarea="body" style="width: 1520px; margin-left: 0px; display: block;">
+        <div class="stdr-close" style="display: block;"></div>
+        <div class="stdr-vote stdr-content">
+            <div class="stdr-content">
+                <span class="stdr-votetitle">Была ли эта страница полезной?</span>
+                <button class="stdr-yes" aria-label="Да, эта страница была полезной">Да</button>
+                <button class="stdr-no" aria-label="Нет, эта страница не была полезной">Нет</button>
+                <input id="s_ratingValue" type="hidden" value="">
+            </div>
+        </div>
+        <div class="stdr-feedback" style="display: none">
+            <div class="stdr-form">
+                <div class="stdr-fieldtitle">Дополнительный отзыв?</div>
+                <textarea class="stdr-detail" rows="6" maxlength="1500"></textarea>
+                <div>
+                    <span class="stdr-count"><span class="stdr-charcnt">1500</span> символов осталось</span>
+                    <div class="stdr-buttons">
+                        <button class="stdr-provide" aria-label="Отправить дополнительный отзыв">Отправить</button>
+                        <button class="stdr-skip" aria-label="Пропустить дополнительный отзыв">Пропустить</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="stdr-thanks" style="display: none">
+            <div class="stdr-content">
+                <span class="stdr-thankyou">Спасибо!</span>
+                <span class="stdr-appreciate">Благодарим за отзыв. Ваше мнение очень важно для нас.</span>
+            </div>
+        </div>
+
+        
+        <div id="contentFeedbackQAContainer" style="display: none;"></div>
+    </div>
+    <div id="standardRatingPlaceholder" style="height: 60px;"></div>
+    
+
+        <footer class="top" role="navigation" aria-label="footer">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Центры разработки</h4>
+    <ul class="links">
+      <li>
+        <a href="https://dev.windows.com/" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="https://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/vstudio" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="https://azure.microsoft.com/ru-ru/documentation/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/developer-centers-msdn" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">Дополнительно...</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Обучение</h4>
+    <ul class="links">
+      <li>
+        <a href="https://mva.microsoft.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="https://channel9.msdn.com/browse/series?lang=ru" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Канал Channel 9</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/ru-ru/magazine/default.aspx" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">Журнал MSDN</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Сообщество</h4>
+    <ul class="links">
+      <li>
+        <a href="https://blogs.msdn.com/b/rudevnews/" id="CenterLinks2_2151_17" xmlns="http://www.w3.org/1999/xhtml">Новости</a>
+      </li>
+      <li>
+        <a href="https://social.msdn.microsoft.com/forums/ru-ru/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Форумы</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/ru-ru/jj129558" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Блоги</a>
+      </li>
+      <li>
+        <a href="https://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Свяжитесь с нами</h4>
+    <ul class="links">
+      <li>
+        <a href="https://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Самостоятельно</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Программы</h4>
+    <ul class="links">
+      <li>
+        <a href="https://bizspark.microsoft.com/" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (для стартапов)</a>
+      </li>
+      <li>
+        <a href="https://imagine.microsoft.com/" id="CenterLinks4_2151_23" xmlns="http://www.w3.org/1999/xhtml">Microsoft Imagine (for students)</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            </div>
+        </footer>
+
+        <footer class="bottom" role="contentinfo">
+            <span class="localeContainer">
+                
+    <form class="selectLocale" id="selectLocaleForm" action="https://msdn.microsoft.com/ru-ru/selectlocale-dmc">
+        <input type="hidden" name="fromPage" value="https%3a%2f%2fmsdn.microsoft.com%2fru-ru%2flibrary%2fsystem.threading.threadstart(v%3dvs.110).aspx%3fcs-save-lang%3d1%26cs-lang%3dcpp">
+        <a href="https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx?cs-save-lang=1&amp;cs-lang=cpp#" onclick="$(&#39;#selectLocaleForm&#39;).submit();return false;" title="Измените язык">Россия (Pусский)</a>
+    </form>
+
+
+            </span>
+
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="https://msdn.microsoft.com/newsletter.aspx" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Информационный бюллетень</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Конфиденциальность и файлы cookie</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Условия использования</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Товарные знаки</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <span class="logoLegal">
+                <span class="logoSpan clip67x13" role="img" tabindex="0" aria-label="microsoft logo">
+                    <img alt="logo" class="logo" src="./Делегат ThreadStart (System.Threading)_files/HeaderFooterSprite.png">
+                </span>
+                <span class="copyright">© 2017 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+    </div>
+
+
+        <div class="footerPrintView">
+            <div class="footerCopyrightPrintView">© 2017 Microsoft</div>
+        </div>
+
+        
+        
+
+        
+        
+        
+
+    <input id="tocPaddingPerLevel" type="hidden" value="17">
+
+
+
+        <input id="MtpsDevice" type="hidden" value="Default">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+
+        
+        
+        
+            
+        
+
+<!--[CDATA[ WebTrends view model not available or IncludeLegacyWebTrendsScriptInGlobal feature flag is off]]-->
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" type="hidden" value="bA-NUdg4GhNJKWHLm2erUmnVG0-wQCgGZ5auwH08JLe8YqrPhSOBfpKA5Cf1-I80pkvH6VpkowrMODTTpulKjpvjJcQ1">
+</div>
+
+
+    </div>
+
+    
+    
+
+    
+
+    
+<script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"js\": \"https://i2-msdn.sec.s-msft.com\", \r\n\t\"css\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"ttf\": \"https://i-msdn.sec.s-msft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n\n        window.appInsightsId = \u00275eb1b2eb-c47a-497a-a7ac-a1c230b2882f\u0027;\n        //" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,3:Breadcrumbs,4:LibraryRightNavigationMenu,4:PrintExportButton,5:StandardRating,2:Footer,0:Topic,3:ResponsiveSupport,0:AppInsightsPerf,3:ResponsiveToc,0:ABTestControl,4:WEDCS,3:CmpgrpForHeader,1:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Library/Content:3,/Areas/Library/Themes/Base/Content:4,/Areas/Global/Content:5\u0026amp;hashKey=380CB181B38C487101990C8F514C8659\u0026amp;v=26675691F0E077160D83A0BA18CB3869" },
+	{ url: "https://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026minimumTermLength=2\u0026pgArea=header\u0026brand=Msdn\u0026loc=ru-ru\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Поиск в MSDN" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Areas/Epx/Themes/Base/Content/JumpRedirect.js" },
+	{ txt: "//\n    MTPS = window.MTPS || {};\n    MTPS.Translation = window.MTPS.Translation || {};\n\n    MTPS.Translation.TranslationType =  0;\n    \n    \n        \n        MTPS.Translation.EditorLink = {\n            includeEditor : 0,\n            editLink: \"https://msdn.microsoft.com/ru-ru/library/translation/edit/system.threading.threadstart(v=vs.110).aspx\",\n            editLinkText: \"Предложите более удачный вариант перевода\"\n        };\n        \n    //" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:jquery.popup,0:Translator;/Areas/Library/Content:0\u0026amp;hashKey=16D24150BAC1A18066CEC17E9B28E03E\u0026amp;v=26675691F0E077160D83A0BA18CB3869" },
+	{ txt: "MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = \u0027Развернуть\u0027; MTPS.LocalizedStrings.CollapseButtonTooltip = \u0027Свернуть\u0027; MTPS.LocalizedStrings.EnhancedExpandTooltip = \u0027Щелкните, чтобы развернуть. Щелкните дважды, чтобы развернуть все.\u0027; MTPS.LocalizedStrings.EnhancedCollapseTooltip = \u0027Щелкните, чтобы свернуть. Щелкните дважды, чтобы свернуть все.\u0027; MTPS.LocalizedStrings.ExpandAllButtonTooltip = \u0027Развернуть все\u0027; MTPS.LocalizedStrings.CollapseAllButtonTooltip = \u0027Свернуть все\u0027;" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:LibraryMemberFilter,1:Toc_Fixed,1:CodeSnippet,1:TopicNotInScope,1:VersionSelector,1:SurveyBroker;/Areas/Library/Content:0,/Areas/Epx/Content/Scripts:1\u0026amp;hashKey=D8D1FFAA6CA68460B7EFA5923975CA44\u0026amp;v=26675691F0E077160D83A0BA18CB3869" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+
+<div id="overlayMask"></div><div id="popup-loading0" class="popup-loading" style="display: none; z-index: 210; width: auto; height: auto;">loading...</div><div id="popup0" class="MTPopup" style="display: none; z-index: 210; width: auto; height: auto;"><div class="popup-main" style="z-index: 210;"><div class="popup-inner"></div></div></div><script src="./Делегат ThreadStart (System.Threading)_files/broker-config.js.Без названия"></script><script aria-hidden="true" type="application/x-lastpass" id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{(function() { for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; if (typeof(lastpass_f.lpsubmitorig2)=='object'){ continue;}lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i.toString(); } else { d.textContent=i.toString(); } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }})()}catch(e){}</script></body></html>

@@ -1,0 +1,2 @@
+https://msdn.microsoft.com/ru-ru/library/system.componentmodel.backgroundworker(v=vs.110).aspx
+https://msdn.microsoft.com/ru-ru/library/system.threading.threadstart(v=vs.110).aspx
