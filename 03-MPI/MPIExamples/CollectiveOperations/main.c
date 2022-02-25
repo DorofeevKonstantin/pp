@@ -31,11 +31,6 @@ int main(int argc, char** argv)
 	int partialSumm = recvBuf[0] + recvBuf[1];
 	printf_s("(Scatter) process %d receive <-- %d,%d, sending ->  %d summ", rank, recvBuf[0], recvBuf[1], partialSumm);
 	int* recvPartialSumms = (int*)malloc(size * sizeof(int));
-	if (rank == 0)
-	{
-		for (int i = 0; i < size; i++)
-			recvPartialSumms[i] = -999;
-	}
 	fflush(stdout);
 	MPI_Barrier(MPI_COMM_WORLD);
 	MPI_Gather(&partialSumm, 1, MPI_INT, recvPartialSumms, 1, MPI_INT, 0, MPI_COMM_WORLD);
