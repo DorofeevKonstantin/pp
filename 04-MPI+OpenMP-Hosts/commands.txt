@@ -1,0 +1,11 @@
+Примеры команд для запуска mpi программы на нескольких хостах
+
+1.На каждом хосте от одинакового пользователя запустить smpd :
+smpd -d // под mpi user
+runas /user:mpi "smpd -d"
+
+2.На управляющем хосте запустить программу с помощью mpiexec (от того же mpi user) :
+mpiexec.exe -hosts 1 compName 5 "C:\1.exe"
+mpiexec.exe -hosts 1 compName 5 "\\public\dir\prog.exe"
+mpiexec.exe -hosts 2 192.168.1.5 2 192.168.1.6 3 "C:\1.exe"
+mpiexec.exe -hosts 1 192.168.1.5 4 -wdir D:\1 1.exe
