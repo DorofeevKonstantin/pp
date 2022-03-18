@@ -1,0 +1,1 @@
+document.writeln ( "<P>В ближайшее время статья по расширению ARB_shader_image_load_store" );

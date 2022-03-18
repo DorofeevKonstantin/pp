@@ -1,0 +1,1386 @@
+
+<!-- saved from url=(0052)http://steps3d.narod.ru/tutorials/cuda-tutorial.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./steps3D - Tutorials - Основы CUDA_files/watch.js.Без названия"></script><script src="http://ucounter.ucoz.net/?src=ss2&amp;data=Mjo5OjM4OjEwOTo1MzoyMjoyOTo5Mjo4NjoyNjo4ODo2MDoxNTowOjA6MTA6MTExOjIwOjUwOjI4OjMxOjIzOjQ3OjE2OjkzOjExNzo5ODo4OTo4Mjo3ODo0OTo2NDozMDoxMzozMDo5Mjo4NjoxMDo4MDo2MDoxNToyNjoyMTo5OjM4OjE1OjM5OjExOjg6NDo4NjoxMDo4MDo2MDoxNToxMzoxNDo1OjExMTo5MjozMjoxMToyOjU6ODY6MjQ6ODU6Mzk6NTU6NTQ6MjE6Mjc6MTExOjM6MTE0OjY0Ojg4Ojg2OjY3Ojc4OjEwOjEyNjoxMDM6Nzk6MTg6MTozODoxMDk6MzI6Mjk6MToyMTo3Nzo5NTo3NDozMzozNjo1NDozOjk6NjA6ODU6MTI0Ojk1OjMwOjg6NDozODo3OTozMjo1NzoxMzo5Mjo3ODozMzo5MTo1MzozODo5OjM6NDozMTo0OjExMDozNTowOjIxOjU1OjYyOjkyOjM4OjY4Ojc1OjE4OjI1OjEzOjEwMjo0MjozMjo2OjE4Ojg1&amp;r64=aHR0cDovL3N0ZXBzM2QubmFyb2QucnUvYXJ0aWNsZXMuaHRtbA==&amp;cid=A1B100&amp;cb=0.525345989738536" async=""></script><script type="text/javascript">(function (d, w, c) {(w[c] = w[c] || []).push(function() {try {w.yaCounter39883200 = new Ya.Metrika({id:39883200,clickmap:true,trackLinks:true,accurateTrackBounce:true,ut:"noindex"});} catch(e) { }});var n = d.getElementsByTagName("script")[0],s = d.createElement("script"),f = function () { n.parentNode.insertBefore(s, n); };s.type = "text/javascript";s.async = true;s.src = "https://mc.yandex.ru/metrika/watch.js";if (w.opera == "[object Opera]") {d.addEventListener("DOMContentLoaded", f, false);} else { f(); }})(document, window, "yandex_metrika_callbacks");</script><script src="./steps3D - Tutorials - Основы CUDA_files/uutils.fcg"></script>
+<script type="text/javascript" src="http://steps3d.narod.ru/abnl/?adsdata=nFZSMNU4q1!sYJdciPMShWRtDvnhcaYEI4jh1Y0uIM!^OsiBBw;08bj1yga;ZcW!^H^A78wHchxuAMxHtHiJPNUDntHq0w^PV1AW0qJPZuaPQwOS4MS2VBj!PV^4t8jQqH4jUa9pI4d^nnQcQyrxxlTU4zm871hHaOiUEH0ZdgnXRdJ7DN0Vrw0aEefmEXYNdzRj;Q3yMnnVPW9gwTrn42iN!qxnZUAWxSN4PM!WdNgMty1b2KSFqFrVCjFZOIHjd^Lqic1fJn8z6sDK3T;a^flKjbHar!3LiUwiHjCiGKjcOmV!KBD7vRiYE1HABQ^wVZaOZy8j5yH7zLvmv^L!hS0zW;8XkNaCj;x!eMIUQ4nnO9lZqsTOMBvPrY9hwel4HUqhXK7MOBTDNVOwv8HsAcNV"></script>
+
+
+	<link rel="STYLESHEET" type="text/css" href="./steps3D - Tutorials - Основы CUDA_files/new.css" media="screen">
+	<link rel="STYLESHEET" type="text/css" href="./steps3D - Tutorials - Основы CUDA_files/new-print.css" media="print">
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://steps3d.narod.ru/rss">
+
+    <title>steps3D - Tutorials - Основы CUDA</title>
+    <meta name="KeyWords" content="CUDA, GPGPU">
+	<meta name="Author" content="Alexey Boreskov">
+	
+</head>
+
+<body>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tbody><tr>
+		<td class="logo">
+			<img src="./steps3D - Tutorials - Основы CUDA_files/logo-new.jpg" alt="steps3D">
+		</td>
+		<td width="35%">
+			<script language="JavaScript" type="text/javascript" src="./steps3D - Tutorials - Основы CUDA_files/new.js.Без названия"></script><p>В ближайшее время статья по расширению ARB_shader_image_load_store
+
+		</p></td>
+		<td width="35%">
+			<script type="text/javascript" src="./steps3D - Tutorials - Основы CUDA_files/quotebr.js.Без названия"></script><b>Quote of the Day</b><br>
+All the art of living lies in a fine mingling of letting go and holding on.<br>
+<a href="http://www.brainyquote.com/quotes/authors/h/havelock_ellis.html.html?utm_source=script&amp;utm_medium=feeds&amp;utm_campaign=quotebr" target="_blank">Havelock Ellis</a>
+<br>
+
+		</td>
+		<td width="15%">
+			<script language="JavaScript" type="text/javascript" src="./steps3D - Tutorials - Основы CUDA_files/adv.js.Без названия"></script><a href="http://www.ozon.ru/context/detail/id/4596682/?partner=steps3D">
+<img src="./steps3D - Tutorials - Основы CUDA_files/scent.png" border="0" alt="">
+</a>
+
+		</td>
+	</tr>
+</tbody></table>
+
+<table class="siteheader" cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tbody><tr>
+		<td class="toolbarleft">
+		</td>
+		<td class="toolbarmid">
+			<a href="http://steps3d.narod.ru/index.html" title="Главная">Главная</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/articles.html" title="Статьи">Статьи</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/links.html" title="Ссылки">Ссылки</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/downloads.html" title="Скачать">Скачать</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/screenshots.html" title="Скриншоты">Скриншоты</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/humour.html" title="Юмор">Юмор</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/books.html" title="Почитать">Почитать</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/tools.html" title="Tools">Tools</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/projects.html" title="Проекты">Проекты</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.narod.ru/me.html" title="Обо мне">Обо мне</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://narod.yandex.ru/guestbook/?owner=12139292" title="Гостевая">Гостевая</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<a href="http://steps3d.ixbb.ru/" title="Форум">Форум</a>
+			<img src="./steps3D - Tutorials - Основы CUDA_files/menu-sep-2.png" alt="">
+			<form method="GET" action="http://www.google.com/search">
+				<input type="hidden" name="domains" value="steps3d.narod.ru">
+				<input type="text" name="q" size="20" maxlength="255" style="font-size:9pt;" value="" class="searchbox">
+<!--				<input type="submit" name="btnG" VALUE="Найти" style="font-size: 8pt"> -->
+				<input type="image" name="btnG" src="./steps3D - Tutorials - Основы CUDA_files/btn-search-3.png" alt="Search" class="searchbuton" align="top"> 
+				<input type="hidden" name="sitesearch" value="">
+				<input type="hidden" name="sitesearch" value="steps3d.narod.ru" checked="" style="font-size:7pt;">
+			</form>
+			<a href="http://steps3d.narod.ru/rss"><img src="./steps3D - Tutorials - Основы CUDA_files/rss.gif" alt="rss"></a>
+		</td>
+		<td class="toolbarright">
+		</td>
+	</tr>
+</tbody></table>
+
+<br>		
+		
+<div class="Article">
+
+<h1>
+Основы CUDA
+</h1>
+
+<p>
+</p><h2>Введение, GPGPU</h2>
+
+<p>
+CUDA (<i>Compute Unified Device Architecture</i>) -- это технология от компании 
+<a href="http://www.nvidia.com/">NVidia</a>, предназначенная для разработки 
+приложений для массивно-параллельных вычислительных устройств (в первую очередь для GPU начиная с серии G80).
+
+</p><p>
+Основными плюсами CUDA являются ее бесплатность (SDK для всех основных платформ свободно скачивается с 
+<a href="http://www.nvidia.com/object/cuda_get.html">developer.nvidia.com</a>), простота (программирование ведется на "расширенном 
+С") и гибкость.
+
+</p><p>
+Фактически CUDA является дальнейшим развитием <a href="http://www.gpgpu.org/">GPGPU (<i>General Purpose computation on GPU</i>)</a>.
+Дело в том, что уже с самого начала GPU активно использовали параллельность
+(как вершины, так и отдельные фрагменты могут обрабатываться параллельно и независимо друг от друга, т.е. очень хорошо
+ложатся на параллельную архитектуру).
+
+</p><p>
+По мере развития GPU росла как степень распараллеливания, так и гибкость самих GPU. Самые первые GPU для PC (Voodoo)
+фактически представляли собой просто растеризатор с возможностью наложения текстуры и буфером глубины.
+Довольно быстро появились GPU с T&amp;L, т.е. полной обработкой вершин на самом GPU - на вход поступают трехмерные данные и 
+на выходе получаем готовое изображение (например, Riva TNT). Однако гибкость в них была небольшой - ведь все вычисления велись
+в рамках фиксированного конвейера (FFP).
+
+</p><p>
+Следующим шагом (GeForce 2) стало появления вершинных шейдеров (расширение 
+<a href="http://steps3d.narod.ru/tutorials/vertex-program-tutorial.html">ARB_vertex_program</a>) - обработку вершин стало
+возможным задавать в виде программы, написанной на специальном ассемблере. При этом вершины обрабатывались параллельно и 
+независимо друг от друга. Ниже приводится пример простой программы на таком ассемблере.
+
+</p><p>
+</p></div>
+<pre class="Listing">!!ARBvp1.0
+ATTRIB pos     = vertex.position;
+PARAM  mat [4] = { state.matrix.mvp };
+
+# transform by concatenation of modelview and projection matrices
+
+DP4 result.position.x, mat [0], pos;
+DP4 result.position.y, mat [1], pos;
+DP4 result.position.z, mat [2], pos;
+DP4 result.position.w, mat [3], pos;
+
+# copy primary color
+ 
+MOV result.color, vertex.color;
+END
+</pre>
+<div class="Article">
+<p>
+
+Вполне логичным следующим шагом стало появление фрагментных программ (расширение 
+<a href="http://steps3d.narod.ru/tutorials/fragment-program-tutorial.html">ARB_fragment_program</a>), позволяющим
+задавать расчет каждого пиксела также при помощи программы, на ассемблере. Важным моментом является то, что все
+эти вычисления (как для вершин, так и для фрагментов) ведутся с использованием 32-битовых <i>floating-point</i> чисел.
+
+</p><p>
+В архитектуре GPU появились отдельные вершинные и фрагментные процессоры, выполняющие соответствующие программы. Данные
+процессоры вначале были крайне просты - можно было выполнять лишь простейшие операции, практически полностью отсутствовало
+ветвление и все процессоры одного типа одновременно выполняли одну и ту же команду (классическая SIMD-архитектура).
+
+</p><p>
+За счет большого числа вершинных и фрагментных процессоров, выполняющих такие программы, оказалось, что по быстродействию
+(измеряемому в количестве <i>floating-point</i> операций в секунду) GPU в разы обгоняют CPU.
+
+</p><p>
+Заключительным шагом, превратившим GPU в мощные параллельные вычислители, стало поддержка <i>floating-point</i> текстур,
+т.е. стало возможным хранить значения в текстурах как 32-битовые <i>floating-point</i> числа.
+
+</p><p>
+В результате GPU фактически стало устройством, реализующим потоковую вычислительную модель 
+(<a href="http://steps3d.narod.ru/tutorials/gpu-programming-tutorial.html">stream computing model</a>) - есть потоки входных и выходных данных, состоящие
+из одинаковых элементов, которые могут быть обработаны независимо друг от друга. Обработка элементов осуществляется 
+ядром (<i>kernel</i>) (см рис 1.).
+
+
+</p><p>
+<img src="./steps3D - Tutorials - Основы CUDA_files/gpu-programming-1.gif">
+
+</p><p>
+Рис 1. Потоковый вычисления.
+
+</p><p>
+Фактически GPU оказалось мощным SIMD (<i>Single Instruction Multiple Data</i>) процессором. В результате появилось 
+<a href="http://www.gpgpu.org/">GPGPU</a> - использование огромной вычислительной мощности GPU для решения неграфических задач. 
+Несмотря на значительные результаты GPGPU обладало рядом недостатков:
+
+</p><ul>
+<li>
+вся работа шла через графический API, код для GPU писался на GLSL/HLSL/Cg, остальной код - на традиционном языке программирования
+
+</li><li>
+наличие ограничений на размеры и размерность текстур
+
+</li><li>
+полностью отсутствовала возможность взаимодействия между параллельно обрабатываемыми пикселами
+
+</li><li>
+отсутствовала поддержка так называемого <i>scatter</i>'а (хотя были найдены <a href="http://steps3d.narod.ru/tutorials/gpu-scatter-tutorial.html">обходные пути</a>)
+
+</li></ul>
+
+<p>
+Кроме того на GPU GeForce 6xxx/7xxx отсутствовала нативная поддержка целых чисел и побитовых операций над ними.
+
+</p><p>
+Появление CUDA (а также GPU G80) полностью сняло все эти ограничения, предложив для GPGPU простую и удобную модель. В этой
+модели GPU рассматривается как специализированное вычислительное устройство (называемое <i>device</i>), которое:
+
+</p><ul>
+<li>
+является сопроцессором к CPU (называемому <i>host</i>)
+</li><li>
+ обладает собственной памятью (DRAM)
+</li><li>
+обладает возможностью параллельного выполнения огромного количества отдельных нитей (<i>threads</i>)
+</li></ul>
+
+<p>
+При этом между нитями на CPU и нитями на GPU есть принципиальные различия - 
+
+</p><ul>
+<li>
+нити на GPU обладают крайне "небольшой стоимостью" - их создание и управление требует минимальных ресурсов
+(в отличии от CPU)
+
+</li><li>
+для эффективной утилизации возможностей GPU нужно использовать многие тысячи отдельных нитей 
+(для CPU обычно нужно не более 10-20 нитей)
+
+</li></ul>
+
+<p>
+Сами программы пишутся на "расширенном" С, при этом их параллельная часть (ядра) выполняется на GPU, а обычная часть - на CPU.
+CUDA автоматически осуществляет разделением частей и управлением их запуском.
+
+</p><p>
+CUDA использует большое число отдельных нитей для вычислений, часто каждому вычисляемому элементами соответствует одна нить.
+Все нити группируются в иерархию - <i>grid/block/thread</i> (см. рис. 2).
+
+</p><p>
+<img src="./steps3D - Tutorials - Основы CUDA_files/cuda-1.gif">
+
+</p><p>
+Рис 2. Иерархия нитей в CUDA.
+
+</p><p>
+Верхний уровень - <i>grid</i> - соответствует ядру и объединяет все нити выполняющие данное ядро. 
+<i>grid</i> представляет собой одномерный или двухмерный массив блоков (<i>block</i>).
+Каждый блок (<i>block</i>) представляет из себя одно/двух/трехмерный массив нитей  (<i>threads</i>).
+
+</p><p>
+При этом каждый блок представляет собой полностью независимый набор взаимодействующих между собой нитей, нити из разных
+блоков не могут между собой взаимодействовать.
+
+</p><p>
+Фактически блок соответствует независимо решаемой подзадаче, так например если нужно найти произведение двух матриц, то 
+матрицу-результат можно разбить на отдельные подматрицы одинакового размера. Нахождение каждой такой подматрицы может
+происходить абсолютно независимо от нахождения остальных подматриц. Нахождение такой подматрицы - задача отдельного блока, 
+внутри блока каждому элементу подматрицы соответствует отдельная нить.
+
+</p><p>
+При этом нити внутри блока могут взаимодействовать между собой (т.е. совместно решать подзадачу) через
+
+</p><ul>
+<li>
+общую память (<i>shared memory</i>)
+</li><li>
+функцию синхронизации всех нитей блока (<b>__synchronize</b>)
+</li></ul>
+
+<p>
+Подобная иерархия довольно естественна - с одной стороны хочется иметь возможность взаимодействия между отдельными нитями, а 
+с другой - чем больше таких нитей, тем выше оказывается цена подобного взаимодействия.
+
+</p><p>
+Поэтому исходная задача (применение ядра к входным данным) разбивается на ряд подзадач, каждая из которых решается абсолютно 
+независимо (т.е. никакого взаимодействия между подзадачами нет) и в произвольном порядке.
+
+</p><p>
+Сама же подзадача решается при помощи набора взаимодействующих между собой нитей.
+
+</p><p>
+С аппаратной точки зрения все нити разбиваются на так называемые <i>warp</i>'ы - блоки подряд идущих нитей, которые одновременно
+(физически) выполняются и могут взаимодействовать друг с другом. Каждый блок нитей разбивается на несколько <i>warp</i>'ов, 
+размер <i>warp</i>'а для всех существующих сейчас GPU равен 32.
+
+</p><p>
+Важным моментом является то, что нити фактически выполняют одну и ту же команды, но каждая со своими данными. Поэтому если внутри
+<i>warp</i>'а происходит ветвление (например в результате выполнения оператора <b>if</b>), то все нити <i>warp</i>'а выполняют 
+все возникающие при этом ветви. Поэтому крайне желательно уменьшить ветвление в пределах каждого отдельного <i>warp</i>'а.
+
+</p><p>
+Также используется понятие <i>half-warp</i>'а - это первая или вторая половина <i>warp</i>'а. Подобное разбиение <i>warp</i>'а на
+половины связано с тем, что обычно обращение к памяти делаются отдельно для каждого <i>half-warp</i>'а.
+
+</p><p>
+Кроме иерархии нитей существует также несколько различных типов памяти. Быстродействие приложения очень сильно зависит от 
+скорости работы с памятью. Именно поэтому в традиционных CPU большую часть кристалла занимают различные кэши, предназначенные
+для ускорения работы с памятью (в то время как для GPU основную часть кристалла занимают ALU).
+
+</p><p>
+В CUDA для GPU существует несколько различных типов памяти, доступных нитям, сильно различающихся между собой (см. табл. 1).
+
+</p><p>
+Таблица 1. Типы памяти в CUDA.
+
+</p><p>
+<table cellpadding="0" cellspacing="0" border="1" width="60%" align="center">
+	<tbody><tr style="background-color: #AAAAAA; color: #FFFFFF">
+		<th width="25%" align="center">Тип памяти</th>
+		<th width="15%" align="center">Доступ</th>
+		<th width="25%" align="center">Уровень выделения</th>
+		<th align="center">Скорость работы</th>
+	</tr>
+	<tr>
+		<td>регистры (registers)</td>
+		<td>R/W</td>
+		<td>per-thread</td>
+		<td>высокая (on chip)</td>
+	</tr>
+	<tr>
+		<td>local</td>
+		<td>R/W</td>
+		<td>per-thread</td>
+		<td>низкая (DRAM)</td>
+	</tr>
+	<tr>
+		<td>shared</td>
+		<td>R/W</td>
+		<td>per-block</td>
+		<td>высокая (on-chip)</td>
+	</tr>
+	<tr>
+		<td>global</td>
+		<td>R/W</td>
+		<td>per-grid</td>
+		<td>низкая(DRAM)</td>
+	</tr>
+	<tr>
+		<td>constant</td>
+		<td>R/O</td>
+		<td>per-grid</td>
+		<td>высокая(on chip L1 cache)</td>
+	</tr>
+	<tr>
+		<td>texture</td>
+		<td>R/O</td>
+		<td>per-grid</td>
+		<td>высокая(on chip L1 cache)</td>
+	</tr>
+</tbody></table>
+
+</p><p>
+При этом CPU имеет R/W доступ только к глобальной, константной и текстурной памяти (находящейся в DRAM GPU) и только через
+функции копирования памяти между CPU и GPU (предоставляемые CUDA API).
+
+</p><p>
+</p><h2>Установка CUDA для Windows и Linux</h2>
+
+<p>
+Для установки CUDA просто зайдите на 
+<a href="http://www.nvidia.com/object/cuda_get.html">страницу для скачивания CUDA</a> и выберите свою операционную систему. Вам 
+необходимо будет скачать и установить CUDA SDK и CUDA Toolkit. Также может понадобиться обновление видеодрайвера.
+
+</p><p>
+На сайте доступны версии для основных дистрибутивов Linux, достаточно подробные инструкции по установке CUDA на Ubuntu 8.10
+(под которую еще нет готовой версии CUDA) можно найти 
+<a href="http://habrahabr.ru/blogs/linux/48720/#habracut">здесь</a>.
+
+</p><p>
+При этом на компьютер устанавливается все, необходимое для работы с CUDA, включая <i>runtime</i> и компилятор <b>nvcc</b>.
+Сам компилятор фактически представляет из себя препроцессор, обрабатывающий код и строящий отдельный код для GPU и CPU. Для 
+компиляции кода для CPU (включая код, необходимый для запуска ядра) <b>nvcc</b> использует обычный C/C++-компилятор
+(на Linux'е он использует gcc).
+
+</p><p>
+Основными опциями команды <b>nvcc</b> являются: 
+</p><p>
+</p><ul>
+
+<li>
+<b>-deviceemu</b> - компиляция в режиме эмуляции, весь код будет выполняться в 
+многонитевом режиме на CPU и можно использовать обычный отладчик (хотя не все ошибки могут проявится в таком режиме)
+
+</li><li>
+<b>--use_fast_math</b> - заменить все вызовы стандартных математических функций на их быстрые (но менее точные) аналоги
+
+
+</li><li>
+<b>-o &lt;outputFileName&gt;</b> - задать имя выходного файла
+</li></ul>
+
+<p>
+</p><p>
+Из известных глюков CUDA 2 - странные сообщения об ошибке при запуске компилятора <b>nvcc</b> из-под Far'а или из make-файла.
+Однако они легко решаются созданием <b>.bat</b>-файла, вызывающего <b>nvcc</b> и передающему ему все параметры (пример подобного
+файла есть в прилагаемом к статье исходном коде).
+
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+</p><h2>Расширения языка С</h2>
+
+<p>
+Программы для CUDA (соответствующие файлы обычно имеют расширение <i><b>.cu</b></i>) пишутся на "расширенном" С и 
+компилируются при помощи команды <b>nvcc</b>.
+
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+Вводимые в CUDA расширения языка С состоят из
+
+</p><p>
+</p><ul>
+<li>
+спецификаторов функций, показывающих где будет выполняться функция и откуда она может быть вызвана
+
+</li><li>
+спецификаторы переменных, задающие тип памяти, используемый для данной переменных
+
+</li><li>
+директива, служащая для запуска ядра, задающая как данные, так и иерархию нитей
+
+</li><li>
+встроенные переменные, содержащие информацию о текущей нити
+
+</li><li>
+<i>runtime</i>, включающий в себя дополнительные типы данных
+</li></ul>
+
+<p>
+</p><h3>Спецификаторы</h3>
+
+<p>
+Таблица 2. Спецификаторы функций в CUDA.
+
+</p><p>
+<table cellpadding="0" cellspacing="0" border="1" width="60%" align="center">
+	<tbody><tr style="background-color: #AAAAAA; color: #FFFFFF">
+		<th align="center">Спецификатор</th>
+		<th align="center">Выполняется на</th>
+		<th align="center">Может вызываться из</th>
+	</tr>
+	<tr>
+		<td>__device__</td>
+		<td>device</td>
+		<td>device</td>
+	</tr>
+	<tr>
+		<td>__global__</td>
+		<td>device</td>
+		<td>host</td>
+	</tr>
+	<tr>
+		<td>__host__</td>
+		<td>host</td>
+		<td>host</td>
+	</tr>
+</tbody></table>
+
+</p><p>
+При этом спецификаторы <b>__host__</b> и <b>__device__</b> могут быть использованы вместе (это значит, что соответствующая 
+функция может выполняться как на GPU, так и на CPU - соответствующий код для обеих платформ будет автоматически сгенерирован
+компилятором). Спецификаторы <b>__global__</b> и <b>__host__</b> не могут быть использованы вместе.
+
+</p><p>
+Спецификатор <b>__global__</b> обозначает ядро и соответствующая функция должна возвращать значение типа <b>void</b>.
+
+</p><p>
+</p></div>
+<pre class="Listing">__global__ void myKernel ( float * a, float * b, float * c )
+{
+    int index = threadIdx.x;
+	
+    c [i] = a [i] * b [i];
+}
+</pre>
+<div class="Article">
+<p>
+На функции, выполняемые на GPU (<b>__device__</b> и <b>__global__</b>) накладываются следующие ограничения:
+
+</p><p>
+</p><ul>
+<li>
+нельзя брать их адрес (за исключением <b>__global__</b> функций)
+
+</li><li>
+не поддерживается рекурсия
+
+</li><li>
+не поддерживаются <b>static</b>-переменные внутри функции
+
+</li><li>
+не поддерживается переменное число входных аргументов
+</li></ul>
+
+<p>
+Для задания размещения в памяти GPU переменных используются следующие спецификаторы - 
+<b>__device__</b>, <b>__constant__</b> и <b>__shared__</b>. На их использование также накладывается ряд ограничений:
+
+</p><p>
+</p><ul>
+эти спецификаторы не могут быть применены к полям структуры (<b>struct</b> или <b>union</b>)
+
+<li>
+соответствующие переменные могут использоваться только в пределах одного файла, их нельзя объявлять как <b>extern</b>
+
+</li><li>
+запись в переменные типа <b>__constant__</b> может осуществляться только CPU при помощи специальных функций
+
+</li><li>
+<b>__shared__</b> переменные не могут инициализироваться при объявлении
+
+</li></ul>
+
+<p>
+</p><h3>Добавленные переменные</h3>
+<p>
+В язык добавлены следующие специальные переменные
+
+</p><p>
+</p><ul>
+<li>
+<i>gridDim</i> - размер <i>grid</i>'а (имеет тип <b>dim3</b>)
+
+</li><li>
+<i>blockDim</i> - размер блока (имеет тип <b>dim3</b>)
+
+</li><li>
+<i>blockIdx</i> - индекс текущего блока в <i>grid</i>'е (имеет тип <b>uint3</b>)
+
+</li><li>
+<i>threadIdx</i> - индекс текущей нити в блоке (имеет тип <b>uint3</b>)
+
+</li><li>
+<i>warpSize</i> - размер <i>warp</i>'а (имеет тип <b>int</b>)
+
+</li></ul>
+<p>
+
+</p><p>
+
+</p><p>
+</p><h3>Добавленные типы</h3>
+
+<p>
+В язык добавляются 1/2/3/4-мерные вектора из базовых типов - <b>char1</b>, <b>char2</b>, <b>char3</b>, <b>char4</b>,
+<b>uchar1</b>, <b>uchar2</b>, <b>uchar3</b>, <b>uchar4</b>, 
+<b>short1</b>, <b>short2</b>, <b>short3</b>, <b>short4</b>,
+<b>ushort1</b>, <b>ushort2</b>, <b>ushort3</b>, <b>ushort4</b>,
+<b>int1</b>, <b>int2</b>, <b>int3</b>, <b>int4</b>, 
+<b>uint1</b>, <b>uint2</b>, <b>uint3</b>, <b>uint4</b>, 
+<b>long1</b>, <b>long2</b>, <b>long3</b>, <b>long4</b>, 
+<b>ulong1</b>, <b>ulong2</b>, <b>ulong3</b>, <b>ulong4</b>, 
+<b>float1</b>, <b>float2</b>, <b>float3</b>, <b>float2</b>, 
+и <b>double2</b>. 
+
+</p><p>
+Обращение к компонентам вектора идет по именам - <i>x</i>, <i>y</i>, <i>z</i> и <i>w</i>. Для создания значений-векторов 
+заданного типа служит конструкция вида <i>make_&lt;typeName&gt;</i>.
+
+</p><p>
+</p></div>
+<pre class="Listing">int2   a = make_int2   ( 1, 7 );
+float3 u = make_float3 ( 1, 2, 3.4f );
+</pre>
+<div class="Article">
+
+<p>
+Обратите внимание, что для этих типов (в отличии от шейдерных языков GLSL/Cg/HLSL) не поддерживаются векторные покомпонентные
+операции, т.е. нельзя просто сложить два вектора при помощи оператора "+" - это  необходимо явно делать для каждой компоненты.
+
+</p><p>
+Также для задания размерности служит тип <b>dim3</b>, основанный на типе <b>uint3</b>, но обладающий нормальным 
+конструктором, инициализирующим все не заданные компоненты единицами.
+
+</p><p>
+</p><p>
+
+</p><p>
+</p><h3>Директива вызова ядра</h3>
+
+<p>
+Для запуска ядра на GPU используется следующая конструкция:
+
+</p><p>
+<i>kernelName &lt;&lt;&lt;Dg,Db,Ns,S&gt;&gt;&gt; ( args ) </i>
+
+</p><p>
+Здесь <i>kernelName</i> это имя (адрес) соответствующей <b>__global__</b> функции, 
+<i>Dg</i> - переменная (или значение) типа <b>dim3</b>, задающая размерность и размер <i>grid</i>'a (в блоках),
+<i>Db</i> - переменная (или значение) типа <b>dim3</b>, задающая размерность и размер блока (в нитях),
+<i>Ns</i> - переменная (или значение) типа <b>size_t</b>, задающая дополнительный объем <i>shared</i>-памяти, которая 
+должна быть динамически выделена (к уже статически выделенной <i>shared</i>-памяти),
+<i>S</i> - переменная  (или значение) типа <b>cudaStream_t</b> задает поток (<i>CUDA stream</i>), в котором должен 
+произойти вызов, по умолчанию используется поток 0.
+Через <i>args</i> обозначены аргументы вызова функции  <i>kernelName</i>.
+
+</p><p>
+Также в язык С добавлена функция <b>__syncthreads</b>, осуществляющая синхронизацию всех нитей блока. Управление из нее будет 
+возвращено только тогда, когда все нити данного блока вызовут эту функцию. Т.е. когда весь код, идущий перед этим вызовом, уже 
+выполнен (и, значит, на его результаты можно смело рассчитывать). Эта функция очень удобная для организации безконфликтной 
+работы с <i>shared</i>-памятью.
+
+</p><p>
+Также CUDA поддерживает все математические функции из стандартной библиотеки С, однако с точки зрения быстродействия лучше 
+использовать их <i>float</i>-аналоги (а не <i>double</i>) - например <i>sinf</i>. Кроме этого CUDA предоставляет дополнительный
+набор математических функций (<i>__sinf</i>, <i>__powf</i> и т.д.) обеспечивающие более низкую точность, но заметно более 
+высокое быстродействие чем <i>sinf</i>, <i>powf</i> и т.п.
+
+</p><p>
+</p><h2>Основы CUDA host API</h2>
+
+<p>
+CUDA API для CPU (host) выступает в двух формах - низкоуровневый CUDA drievr API и CUDA runtime API (реализованный через
+CUDA driver API). В своем приложении Вы можете использовать только один из них, далее мы рассмотрим CUDA runtime API, как более
+простой и удобный.
+
+</p><p>
+Все функции CUDA driver API начинаются с префикса <i>cu</i>, а все функции CUDA runtime API начинаются с префикса <i>cuda</i>.
+Каждый из этих API предоставляет основной набор базовых функций, таких как перебор всех доступных устройств (GPU), работа с 
+контекстами и потоками, работа с памятью GPU, взаимодействие с OpenGL и D3D (поддерживается только 9-я версия DirectX).
+
+</p><p>
+CUDA runtime API не требует явной инициализации - она происходит автоматически при первом вызове какой-либо его функции.
+Важным моментом работы с CUDA является то, что многие функции API являются асинхронными, т.е. управление возвращается еще до
+реального завершения требуемой операции.
+
+</p><p>
+К числу асинхронных операций относятся
+</p><ul>
+<li>
+запуск ядра
+
+</li><li>
+функции копирования памяти, имена которых оканчиваются на <b>Async</b>
+
+</li><li>
+функции копирования памяти <i>device &lt;-&gt; device</i>
+
+</li><li>
+функции инициализации памяти.
+
+</li></ul>
+<p>
+CUDA поддерживает синхронизацию через потоки (<i>streams</i>) - каждый поток задает последовательность операций, выполняемых в
+строго определенном порядке. При этом порядок выполнения операций между разными потоками не является строго определенной и может
+изменяться.
+
+</p><p>
+Каждая функция CUDA API (кроме запуска ядра) возвращает значение типа <b>cudaError_t</b>. При успешном выполнении функции
+возвращается <b>cudaSuccess</b>, в противном случае возвращается код ошибки.
+
+</p><p>
+Получить описание ошибки в виде строки по ее коду можно при помощи функции <i>cudaGetErrorString</i>:
+
+</p><p>
+</p></div>
+<pre class="Listing">char * cudaGetErrorString ( cudaError_t code );
+</pre>
+<div class="Article">
+<p>
+Также можно получить код последней ошибки при помощи функции <i>cudaGetLastError</i>:
+
+</p><p>
+</p></div>
+<pre class="Listing">cudaError_t cudaGetLastError ();
+</pre>
+<div class="Article">
+<p>
+Обратите внимание, что в силу асинхронности выполнения многих вызовов, для получения кода ошибки лучше использовать функцию 
+<i>cudaThreadSynchronize</i>, которая дожидается завершения выполнения на GPU всех переданных запросов и возвращает ошибку,
+если один из этих запросов привел к ошибке.
+
+</p><p>
+</p></div>
+<pre class="Listing">cudaError_t cudaThreadSynchronize ();
+</pre>
+<div class="Article">
+<p>
+
+</p><p>
+</p><p>
+
+</p><p>
+</p><h3>Работа с памятью в CUDA</h3>
+
+<p>
+Самым простым способом выделения и освобождения памяти (речь идет исключительно о памяти GPU, причем только линейной памяти, 
+другой тип - CUDA-arrays будет рассмотрен  в следующей статье) является использование функций 
+<b>cudaMalloc</b>, <b>cudeMallocPitch</b> и <b>cudaFree</b>.
+
+</p><p>
+</p></div>
+<pre class="Listing">float * devPtr;         // pointer to device memory
+                        // allocate linear memory for 256 floats
+cudaMalloc ( (void **)&amp;devPtr, 256*sizeof(float) );
+
+. . .
+
+cudaFree ( devPtr );    // free device memory
+</pre>
+<div class="Article">
+<p>
+Для выделения памяти под двухмерные массивы более подходящей является функция <b>cudeMallocPitch</b>, которая осуществляет 
+выравнивание (путем добавления к каждой строке дополнительной) строк массива для более эффективного доступа к памяти. При этом
+в параметре <i>pitch</i> возвращается размер строки в байтах.
+
+</p><p>
+</p></div>
+<pre class="Listing">float * devPtr;         // pointer to device memory
+int     pitch;          // size of row in bytes
+                        // allocate linear memory for width*height 2D array of floats
+cudaMallocPitch ( (void **)&amp;devPtr, &amp;pitch, width*sizeof(float), height );
+
+. . .
+
+cudaFree ( devPtr );    // free device memory
+</pre>
+<div class="Article">
+<p>
+В приведенном фрагменте кода осуществляется выделение памяти на GPU под двухмерный массив из <i>float</i>'ов размером
+<i>width</i> и <i>height</i>. Элемент с индексом <i>[col,row]</i> будет находиться по смещению 
+<i>col*sizeof(float)+row*pitch</i>.
+
+</p><p>
+
+</p><p>
+<img src="./steps3D - Tutorials - Основы CUDA_files/cuda-2.gif">
+
+</p><p>
+Рис 3. Выравнивание двухмерных массивов в памяти.
+
+</p><p>
+Рассмотренные выше функции управляют выделением памяти на GPU, к которой CPU не имеет непосредственного доступа. Поэтому API
+предоставляет функции копирования памяти, которые позволяют копировать память как между CPU и GPU, так и в пределах  GPU.
+
+</p><p>
+</p></div>
+<pre class="Listing">cudaError_t cudaMemcpy      ( void * dst, const void * src, size_t count, enum cudaMemcpyKind kind );
+cudaError_t cudaMemcpyAsync ( void * dst, const void * src, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream );
+</pre>
+<div class="Article">
+<p>
+Здесь аргументы <i>dst</i> и <i>src</i> задают адреса куда и откуда необходимо произвести копирование памяти, 
+параметр <i>count</i> задает количество байт памяти, которое необходимо переписать.
+
+</p><p>
+Параметр <i>kind</i> задает тип копирования памяти и принимает одно из следующих значений - 
+<i>cudaMemcpyHostToHost</i>, <i>cudaMemcpyHostToDevice</i>, <i>cudaMemcpyDeviceToHost</i> и <i>cudaMemcpyDeviceToDevice</i>.
+
+</p><p>
+
+</p><p>
+</p><h3>Использование event'ов для синхронизации на CPU</h3>
+
+<p>
+Для отслеживания выполнения кода на GPU в CUDA используются <i>event</i>'ы (аналогичные <i>fence</i>'объектам в 
+<a href="http://steps3d.narod.ru/tutorials/nv-fence-tutorial.html">расширении NV_fence</a>). Для работы с ними служат следующие функции.
+
+</p><p>
+</p></div>
+<pre class="Listing">cudaError_t cudaEventCreate      ( cudaEvent_t * event );
+cudaError_t cudaEventRecord      ( cudaEvent_t event, CUstream stream );
+cudaError_t cudaEventQuery       ( cudaEvent_t event );
+cudaError_t cudaEventSynchronize ( cudaEvent_t event );
+cudaError_t cudaEventElapsedTime ( float * time, cudaEvent_t startEvent, cudaEvent_t stopEvent );
+cudaError_t cudaEventDestroy     ( cudaEvent_t event );
+</pre>
+<div class="Article">
+<p>
+Функции <i>cudaEventCreate</i> и <i>cudaEventDestroy</i> служат для создание и уничтожения <i>event</i>'ов. 
+
+</p><p>
+Функция <i>cudaEventRecord</i> служит для задания места, прохождение которого должен сигнализировать данный <i>event</i>. 
+Если параметр <i>stream</i> не равен нулю, то отслеживается только завершение выполнения всех операций в данном потоке.
+Обратите внимание, что этот запрос является асинхронным - он фактически только обозначает место в потоке команд, прохождение
+которого потом будет запрашиваться.
+
+</p><p>
+Функция <i>cudaEventQuery</i> выполняет мгновенную проверку "прохождения" данного <i>event</i>а - управление из нее сразу же
+возвращается. В случае, если все операции, предшествующие данному <i>event</i>'у были закончены, то возвращается
+<i>cudaSuccess</i>, иначе возвращается значение <i>cudaErrorNotReady</i>.
+
+</p><p>
+Явная синхронизация, т.е. ожидание пока все операции для данного <i>event</i>'а не будут завершены, обеспечивается командой
+<i>cudaEventSynchronize</i>.
+
+</p><p>
+При помощи функции <i>cudaEventElapsedTime</i> можно узнать время в миллисекундах (с точностью до половины микросекунды), 
+прошедшее между данными <i>event</i>'ами (между моментами, когда каждый из этих <i>event</i>'ов был "записан").
+
+</p><p>
+Ниже приводится фрагмент кода, запускающий ядро на обработку данных, и замеряющих затраченное на обработку время.
+
+</p><p>
+</p></div>
+<pre class="Listing">cudaEventCreate ( &amp;start );
+cudaEventCreate ( &amp;stop );
+
+                    // asynchronously issue work to the GPU (all to stream 0)
+cudaEventRecord ( start, 0 );
+
+                    // call a kernel on data
+incKernel&lt;t;&lt;&lt;blocks, threads&gt;&gt;&gt;(dev);
+
+                    // get data back
+cudaEventRecord ( stop, 0 );
+
+                    // force synchronization
+cudaEventSynchronize ( stop );
+cudaEventElapsedTime ( &amp;gpuTime, start, stop );
+
+                    // print the cpu and gpu times
+printf("time spent executing by the GPU: %.2f milliseconds\n", gpuTime );
+</pre>
+<div class="Article">
+<p>
+
+</p><p>
+</p><h3>Получение информации об имеющихся GPU и их возможностях.</h3>
+
+<p>
+CUDA runtime API предоставляет простой способ получить информацию об имеющихся GPU, которые могут быть использованы CUDA, и обо
+всех их возможностях. Информация о возможностях GPU возвращается в виде структуры <b>cudaDeviceProp</b>.
+
+</p><p>
+</p></div>
+<pre class="Listing">struct cudaDeviceProp 
+{
+    char   name[256];
+    size_t totalGlobalMem;
+    size_t sharedMemPerBlock;
+    int    regsPerBlock;
+    int    warpSize;
+    size_t memPitch;
+    int    maxThreadsPerBlock;
+    int    maxThreadsDim [3];
+    int    maxGridSize   [3];
+    size_t totalConstMem;
+    int    major;
+    int    minor;
+    int    clockRate;
+    size_t textureAlignment;
+    int    deviceOverlap;
+    int    multiProcessorCount;
+}
+</pre>
+<div class="Article">
+<p>
+Для обозначение возможностей CUDA использует понятие <i>Compute Capability</i>, выражаемое парой чисел - <i>major.minor</i>. 
+Первое число обозначает глобальную архитектурную версию, второе - небольшие изменение. Так GPU GeForce 8800 Ultra/GTX/GTS имеют 
+<i>Compute Capability</i> равную 1.0,  
+GPU GeForce 8800 GT/GS и GeForce 9600 GT имеют <i>Compute Capability</i> равную 1.1,
+GPU GeForce GTX 260 и GeForce GTX 280 имеют <i>Compute Capability</i> равную 1.3.
+
+</p><p>
+<i>Compute Capability</i> 1.1 поддерживает атомарные операции над 32-битовыми словами в глобальной памяти, 
+<i>Compute Capability</i> 1.2 поддерживает атомарные операции в <i>shared</i>-памяти и атомарные операции над 64-битовыми 
+словами в глобальной памяти, <i>Compute Capability</i> 1.3 поддерживает операции над числами типа <i>double</i>.
+
+</p><p>
+Ниже приводится исходный текст простой программы, перечисляющей все доступные GPU и их основные возможности.
+
+</p><p>
+</p></div>
+<pre class="Listing">#include &lt;stdio.h&gt;
+
+int main ( int argc, char *  argv [] )
+{
+    int            deviceCount;
+    cudaDeviceProp devProp;
+
+    cudaGetDeviceCount ( &amp;deviceCount );
+
+    printf ( "Found %d devices\n", deviceCount );
+
+    for ( int device = 0; device &lt; deviceCount; device++ )
+    {
+        cudaGetDeviceProperties ( &amp;devProp, device );
+
+        printf ( "Device %d\n", device );
+        printf ( "Compute capability     : %d.%d\n", devProp.major, devProp.minor );
+        printf ( "Name                   : %s\n", devProp.name );
+        printf ( "Total Global Memory    : %d\n", devProp.totalGlobalMem );
+        printf ( "Shared memory per block: %d\n", devProp.sharedMemPerBlock );
+        printf ( "Registers per block    : %d\n", devProp.regsPerBlock );
+        printf ( "Warp size              : %d\n", devProp.warpSize );
+        printf ( "Max threads per block  : %d\n", devProp.maxThreadsPerBlock );
+        printf ( "Total constant memory  : %d\n", devProp.totalConstMem );
+    s}
+
+    return 0;
+}
+</pre>
+<div class="Article">
+
+<p>
+</p><h2>Примеры использования CUDA</h2>
+
+<p>
+Рассмотрим несколько простых примеров использования CUDA, демонстрирующих основные приемы работы с ней. Самым простым примером
+будет простое увеличение каждого элемента одномерного массива на единицу - программа <b>incr.cu</b>.
+
+</p><p>
+</p></div>
+<pre class="Listing">#include &lt;stdio.h&gt;
+
+__global__ void incKernel ( float * data )
+{ 
+   int idx = blockIdx.x * blockDim.x + threadIdx.x;
+   
+   data [idx] = data [idx] + 1.0f;
+}
+
+int main ( int argc, char *  argv [] )
+{
+    int n        = 16 * 1024 * 1024;
+    int numBytes = n * sizeof ( float );
+
+                    // allocate host memory
+    float * a = new float [n];
+    
+    for ( int i = 0; i &lt; n; i++ )
+        a [i] = 0.0f;
+        
+                    // allocate device memory
+    float * dev = NULL;
+    
+    cudaMalloc ( (void**)&amp;dev, numBytes );
+
+                    // set kernel launch configuration
+    dim3 threads = dim3(512, 1);
+    dim3 blocks  = dim3(n / threads.x, 1);
+
+                    // create cuda event handles
+    cudaEvent_t start, stop;
+    float gpuTime = 0.0f;
+
+    cudaEventCreate ( &amp;start );
+    cudaEventCreate ( &amp;stop );
+    
+                    // asynchronously issue work to the GPU (all to stream 0)
+    cudaEventRecord ( start, 0 );
+    cudaMemcpy      ( dev, a, numBytes, cudaMemcpyHostToDevice );
+    
+    incKernel&lt;&lt;&lt;blocks, threads&gt;&gt;&gt;(dev);
+    
+    cudaMemcpy      ( a, dev, numBytes, cudaMemcpyDeviceToHost );
+    cudaEventRecord ( stop, 0 );
+
+    cudaEventSynchronize ( stop );
+    cudaEventElapsedTime ( &amp;gpuTime, start, stop );
+
+                        // print the cpu and gpu times
+    printf("time spent executing by the GPU: %.2f millseconds\n", gpuTime );
+
+                        // check the output for correctness
+    printf("--------------------------------------------------------------\n");
+    
+    for ( int i = 0; i &lt; n; i++ )
+        if ( a [i] != 1.0f )
+        {
+            printf ( "Error in pos %d, %f\n", i, a [i] );
+            
+            break;
+        }
+                    // release resources
+    cudaEventDestroy ( start );
+    cudaEventDestroy ( stop  );
+    cudaFree         ( dev   );
+
+    delete a;
+
+    return 0;
+}
+</pre>
+<div class="Article">
+<p>
+Проще всего устроено ядро - каждой нити соответствует одна нить, блоки и <i>grid</i> одномерны. Ядро (функция 
+<i>incKernel</i>) на вход получает только указатель на массив с данными в глобальной памяти. Задача ядра - по
+<i>threadIdx</i> и <i>blockIdx</i> определить какой именно элемент соответствует данной нити и увеличить именно его.
+
+</p><p>
+Поскольку и блоки и <i>grid</i> одномерны, то номер нити будет определятся как номер блока, умноженный на количество нитей
+в блоке, плюс номер нити внутри блока, т.е. <i>blockIdx.x * blockDim.x + threadIdx.x</i>.
+
+</p><p>
+Функция <i>main</i> несколько сложнее - она должна подготовить массив с данными в памяти CPU, после этого необходимо 
+при помощи <i>cudaMalloc</i> выделить память под копию массива с данными в глобальной памяти (DRAM GPU). Далее данные
+копируются функцией <i>cudaMemcpy</i> из памяти CPU к глобальную память GPU.
+
+</p><p>
+После окончания копирования данные в глобальную память можно запустить ядро для обработки данных и после его вызова
+скопировать результаты вычислений обратно из глобальной памяти GPU в память CPU.
+
+</p><p>
+Также в этом примере производится замер затраченного на копирование и вычисления времени и проверяется корректность полученного
+результата. После этого освобождается вся выделенная память.
+
+</p><p>
+
+</p><p>
+
+</p><p>
+</p><h3>Перемножение двух матриц - простейший подход</h3>
+
+<p>
+
+</p><p>
+</p><p>
+
+
+</p><p>
+Следующий пример будет сложнее (и актуальнее) - мы рассмотрим использование CUDA для перемножения двух квадратных матриц 
+размера <i>N*N</i>.
+
+</p><p>
+Пусть у нас есть  две квадратные матрицы <i>A</i> и <i>B</i> размера <i>N*N</i> (будем считать, что <i>N</i> кратно 16).
+Простейший вариант использует по одной нити на каждый элемент получающейся матрицы <i>C</i>, при этом нить извлекает все 
+необходимые элементы из глобальной памяти и производит требуемые вычисления. 
+
+</p><p>
+Элемент <i>c<sub>i,j</sub></i> произведения двух матриц <i>A</i> и <i>B</i> вычисляется следующим фрагментом псевдокода:
+
+</p><p>
+</p></div>
+<pre class="Listing">c [i][j] = 0
+for k in 0..N-1:
+   c [i][j] += a [i][k] * b [k][j]
+</pre>
+<div class="Article">
+<p>
+
+</p><p>
+Тем самым для вычисления одного элемента произведения матриц нужно выполнить <i>2*N</i> арифметических операций и 
+<i>2*N</i> чтений из глобальной памяти. Понятно, что в данном случае основным лимитирующим фактором является скорость доступа
+к глобальной памяти, которая  весьма низка. Каким образом отдельные нити группируются в блоки не важно и не оказывает 
+значительного влияния на быстродействие, которое в данном случае оказывается весьма невысоким.
+
+</p><p>
+Ниже приводится листинг соответствующей программы.
+
+</p><p>
+</p><p>
+</p></div>
+<pre class="Listing">#include &lt;stdio.h&gt;
+
+#define BLOCK_SIZE  16          // submatrix size
+#define N           1024        // matrix size is N*N
+
+__global__ void matMult ( float * a, float * b, int n, float * c )
+{
+    int   bx  = blockIdx.x;     // block index
+    int   by  = blockIdx.y;
+    int   tx  = threadIdx.x;        // thread index
+    int   ty  = threadIdx.y;
+    float sum = 0.0f;           // computed subelement
+    int   ia  = n * BLOCK_SIZE * by + n * ty;   // a [i][0]
+    int   ib  = BLOCK_SIZE * bx + tx;
+    
+                            // Multiply the two matrices together;
+    for ( int k = 0; k &lt; n; k++ )
+        sum += a [ia + k] * b [ib + k*n];
+            
+                            // Write the block sub-matrix to global memory;
+                            // each thread writes one element
+    int ic = n * BLOCK_SIZE * by + BLOCK_SIZE * bx;
+    
+    c [ic + n * ty + tx] = sum;
+}
+
+int main ( int argc, char *  argv [] )
+{
+    int numBytes = N * N * sizeof ( float );
+
+                    // allocate host memory
+    float * a = new float [N*N];
+    float * b = new float [N*N];
+    float * c = new float [N*N];
+    
+    for ( int i = 0; i &lt; N; i++ )
+        for ( int j = 0; j &lt; N; j++ )
+        {
+			int	k = N*i + j;
+			
+            a [k] = 0.0f;
+            b [k] = 1.0f;
+        }
+        
+                    // allocate device memory
+    float * adev = NULL;
+    float * bdev = NULL;
+    float * cdev = NULL;
+    
+    cudaMalloc ( (void**)&amp;adev, numBytes );
+    cudaMalloc ( (void**)&amp;bdev, numBytes );
+    cudaMalloc ( (void**)&amp;cdev, numBytes );
+
+                    // set kernel launch configuration
+    dim3 threads ( BLOCK_SIZE, BLOCK_SIZE );
+    dim3 blocks  ( N / threads.x, N / threads.y);
+
+                    // create cuda event handles
+    cudaEvent_t start, stop;
+    float gpuTime = 0.0f;
+
+    cudaEventCreate ( &amp;start );
+    cudaEventCreate ( &amp;stop );
+    
+                    // asynchronously issue work to the GPU (all to stream 0)
+    cudaEventRecord ( start, 0 );
+    cudaMemcpy      ( adev, a, numBytes, cudaMemcpyHostToDevice );
+    cudaMemcpy      ( bdev, b, numBytes, cudaMemcpyHostToDevice );
+    
+    matMult&lt;&lt;&lt;blocks, threads&gt;&gt;&gt; ( adev, bdev, N, cdev );
+    
+    cudaMemcpy      ( c, cdev, numBytes, cudaMemcpyDeviceToHost );
+    cudaEventRecord ( stop, 0 );
+
+    cudaEventSynchronize ( stop );
+    cudaEventElapsedTime ( &amp;gpuTime, start, stop );
+
+                        // print the cpu and gpu times
+    printf("time spent executing by the GPU: %.2f millseconds\n", gpuTime );
+
+                    // release resources
+    cudaEventDestroy ( start );
+    cudaEventDestroy ( stop  );
+    cudaFree         ( adev  );
+    cudaFree         ( bdev  );
+    cudaFree         ( cdev  );
+
+    delete a;
+    delete b;
+    delete c;
+
+    return 0;
+}
+</pre>
+<div class="Article">
+<p>
+
+</p><p>
+</p><h3>Перемножение двух матриц с использованием <i>shared</i>-памяти</h3>
+
+
+<p>
+Можно заметно повысить быстродействие нашей программы за счет использования <i>shared</i>-памяти. Для этого разобьем 
+результирующую матрицы на подматрицы 16*16, вычислением каждой такой подматрицы будет заниматься один блок. Обратите внимание,
+что для вычисления такой подматрицы нужны только небольшие "полосы" матриц  <i>A</i> и <i>B</i> (см. рис. 4).
+
+</p><p>
+<img src="./steps3D - Tutorials - Основы CUDA_files/cuda-3.gif">
+
+</p><p>
+Рис 4. Части матриц <i>A</i> и <i>B</i>, используемые для вычисления подматрицы <i>C</i>.
+
+</p><p>
+К сожалению целиком копировать эти "полосы" в <i>shared</i>-память практически нереально из-за довольно небольшого объема 
+<i>shared</i>-памяти. Поэтому можно поступить другим образом - разобьем эти "полосы" на матрицы 16*16 и вычисление подматрицы 
+произведения матриц будем проводить в <i>N/16</i> шагов. 
+
+
+</p><p>
+Для этого обратим внимание, что расчет элемента <i>c<sub>i,j</sub></i> можно переписать следующим образом, используя
+разбиение полос на квадратные подматрицы
+</p><p>
+</p></div>
+<pre class="Listing">c [i][j] = 0
+for step in 0..N/16:
+   for k in 0..16:
+       c [i][j] += a [i][k+step*16] * b [k+step*16][j]
+</pre>
+<div class="Article">
+<p>
+Обратите внимание, что для каждого значения <i>step</i> значения из матриц <i>A</i> и <i>B</i> берутся из двух подматриц
+размером 16*16. Фактически полосы с рис. 4 просто поделены на квадратные подматрицы и каждому значению <i>step</i>
+соответствует по одной такой подматрице <i>A</i> и одной подматрице <i>B</i> (см. рис. 5).
+
+</p><p>
+<img src="./steps3D - Tutorials - Основы CUDA_files/cuda-4.gif">
+
+</p><p>
+Рис 5. Разбиение полос матриц <i>A</i> и <i>B</i> на подматрицы 16*16.
+
+</p><p>
+</p><p>
+
+</p><p>
+На каждом шаге будем загружать в <i>shared</i>-память по одной 16*16 подматрице <i>A</i> и одной 16*16 подматрице <i>B</i>.
+Далее будем вычислять соответствующую им сумму для элементов произведения, потом загружаем следующие 16*16-подматрицы и т.д.
+
+</p><p>
+При этом на каждом шаге одна нить загружает ровно по одному элементу из каждой из матриц <i>A</i> и <i>B</i> и вычисляет 
+соответствующую им сумму членов. По окончании всех вычислений производится запись элемента в итоговую матрицу.
+
+</p><p>
+Обратите внимание, что после загрузки элементов из <i>A</i> и <i>B</i> нужно выполнить синхронизацию нитей при помощи вызова
+<b>__synchronize</b> для того, чтобы к моменту начала расчетов все нужные элементы (загружаемые остальными нитями блока) были 
+бы уже загружены. Точно также по окончании обработки загруженных подматриц и перед загрузкой следующих также нужна 
+синхронизация (чтобы убедится что текущие 16*16 подматрицы больше не нужно и можно загружать новые).
+
+</p><p>
+Ниже приводится соответствующий исходный код.
+
+</p></div>
+<pre class="Listing">#include &lt;stdio.h&gt;
+
+#define BLOCK_SIZE  16          // submatrix size
+#define N           1024        // matrix size is N*N
+
+__global__ void matMult ( float * a, float * b, int n, float * c )
+{
+    int bx = blockIdx.x;        // block index
+    int by = blockIdx.y;
+
+    int tx = threadIdx.x;       // thread index
+    int ty = threadIdx.y;
+    
+                                // Index of the first sub-matrix of A processed by the block
+    int aBegin = n * BLOCK_SIZE * by;
+    int aEnd = aBegin + n - 1;
+                                // Step size used to iterate through the sub-matrices of A
+    int aStep = BLOCK_SIZE;
+                                // Index of the first sub-matrix of B processed by the block
+    int bBegin = BLOCK_SIZE * bx;
+                                // Step size used to iterate through the sub-matrices of B
+    int bStep = BLOCK_SIZE * n;
+    float sum = 0.0f;           // computed subelement
+    
+    for ( int ia = aBegin, ib = bBegin; ia &lt;= aEnd; ia += aStep, ib += bStep )
+    {
+                            // Shared memory for the sub-matrix of A
+        __shared__ float as [BLOCK_SIZE][BLOCK_SIZE];
+                            // Shared memory for the sub-matrix of B
+        __shared__ float bs [BLOCK_SIZE][BLOCK_SIZE];
+        
+                            // Load the matrices from global memory to shared memory;
+        as [ty][tx] = a [ia + n * ty + tx];
+        bs [ty][tx] = b [ib + n * ty + tx];
+        
+        __syncthreads();    // Synchronize to make sure the matrices are loaded
+        
+                            // Multiply the two matrices together;
+        for ( int k = 0; k &lt; BLOCK_SIZE; k++ )
+            sum += as [ty][k] * bs [k][tx];
+            
+                            // Synchronize to make sure that the preceding
+                            // computation is done before loading two new
+                            // sub-matrices of A and B in the next iteration
+        __syncthreads();
+    }
+    
+                            // Write the block sub-matrix to global memory;
+                            // each thread writes one element
+    int ic = n * BLOCK_SIZE * by + BLOCK_SIZE * bx;
+    
+    c [ic + n * ty + tx] = sum;
+}
+
+int main ( int argc, char *  argv [] )
+{
+    int numBytes = N * N * sizeof ( float );
+
+                    // allocate host memory
+    float * a = new float [N*N];
+    float * b = new float [N*N];
+    float * c = new float [N*N];
+    
+    for ( int i = 0; i &lt; N; i++ )
+        for ( int j = 0; j &lt; N; j++ )
+        {
+            a [i] = 0.0f;
+            b [i] = 1.0f;
+        }
+        
+                    // allocate device memory
+    float * adev = NULL;
+    float * bdev = NULL;
+    float * cdev = NULL;
+    
+    cudaMalloc ( (void**)&amp;adev, numBytes );
+    cudaMalloc ( (void**)&amp;bdev, numBytes );
+    cudaMalloc ( (void**)&amp;cdev, numBytes );
+
+                    // set kernel launch configuration
+    dim3 threads ( BLOCK_SIZE, BLOCK_SIZE );
+    dim3 blocks  ( N / threads.x, N / threads.y);
+
+                    // create cuda event handles
+    cudaEvent_t start, stop;
+    float gpuTime = 0.0f;
+
+    cudaEventCreate ( &amp;start );
+    cudaEventCreate ( &amp;stop );
+    
+                    // asynchronously issue work to the GPU (all to stream 0)
+    cudaEventRecord ( start, 0 );
+    cudaMemcpy      ( adev, a, numBytes, cudaMemcpyHostToDevice );
+    cudaMemcpy      ( bdev, b, numBytes, cudaMemcpyHostToDevice );
+    
+    matMult&lt;&lt;&lt;blocks, threads&gt;&gt;&gt; ( adev, bdev, N, cdev );
+    
+    cudaMemcpy      ( c, cdev, numBytes, cudaMemcpyDeviceToHost );
+    cudaEventRecord ( stop, 0 );
+
+    cudaEventSynchronize ( stop );
+    cudaEventElapsedTime ( &amp;gpuTime, start, stop );
+
+                        // print the cpu and gpu times
+    printf("time spent executing by the GPU: %.2f millseconds\n", gpuTime );
+
+                    // release resources
+    cudaEventDestroy ( start );
+    cudaEventDestroy ( stop  );
+    cudaFree         ( adev  );
+    cudaFree         ( bdev  );
+    cudaFree         ( cdev  );
+
+    delete a;
+    delete b;
+    delete c;
+
+    return 0;
+}
+</pre>
+<div class="Article">
+<p>
+Теперь для вычисления одного элемента произведения матриц нам нужно всего <i>2*N/16</i> чтений из глобальной памяти.
+И по результатам сразу видно за счет использования <i>shared</i>-памяти нам удалось поднять быстродействие более чем на
+порядок.
+
+</p><p>
+
+</p><p>
+
+</p><p>
+В следующей статье будет рассмотрена работа с текстурами и OpenGL, а также будут рассмотрены основы архитектуры GPU G80 и то,
+как они соотносятся с CUDA.
+
+</p><p>
+Также планируется третья статья, посвященная оптимизации и использованию библиотек CUBLAS и CUFFT.
+
+</p><p>
+
+</p><p>
+
+</p><p>
+
+</p><p>
+</p><p>
+</p><p>
+
+</p><p>
+По этой
+<a href="http://steps3d.narod.ru/downloads/cuda-src.zip">ссылке</a> можно скачать весь исходный код к этой статье.
+
+</p><p>
+</p><p>
+</p></div> <!-- Article -->
+
+<div align="center" class="copyright">
+<p>
+    <a href="http://validator.w3.org/check?uri=referer"><img src="./steps3D - Tutorials - Основы CUDA_files/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+</p>
+  
+<a href="mailto:steps3d@narod.ru"><img src="./steps3D - Tutorials - Основы CUDA_files/mail.png" border="0" alt="Напиши мне" align="center"></a>
+
+<div align="center" class="copyright">
+			Copyright © Alexey V. Boreskoff 2003-2009 &nbsp; <br>&nbsp;
+</div>
+
+
+<!-- copyright (t4) --><div align="center">Используются технологии <a href="http://www.ucoz.ru/" title="Создать сайт бесплатно"><b>uCoz</b></a><br></div><!-- /copyright -->
+
+
+</div></body></html>

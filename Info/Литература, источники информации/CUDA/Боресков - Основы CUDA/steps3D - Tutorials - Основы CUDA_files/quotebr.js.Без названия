@@ -1,0 +1,6 @@
+var br=document;
+br.writeln("<b>Quote of the Day</b><br>");
+br.writeln("All the art of living lies in a fine mingling of letting go and holding on.<br>");
+br.writeln("<a href=\"http://www.brainyquote.com/quotes/authors/h/havelock_ellis.html.html?utm_source=script&utm_medium=feeds&utm_campaign=quotebr\" target=\"_blank\">Havelock Ellis</a>");
+br.writeln("<br>");
+
