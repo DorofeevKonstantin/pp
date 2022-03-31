@@ -2,7 +2,7 @@
 
 #include "vectorSumm.cuh"
 
-__global__ void vectorSummKernel(int* c, int* a, int* b, const int size)
+__global__ void vectorSummBlocksKernel(int* c, int* a, int* b, const int size)
 {
 	int i = blockIdx.x;
 	if (i < size)

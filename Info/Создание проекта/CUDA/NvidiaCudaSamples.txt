@@ -1,0 +1,16 @@
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v11.4\bin\win64\Release
+
+imageDenoising.exe
+SobelFilter.exe
+postProcessGL.exe
+
+simpleGL.exe
+simpleD3D12.exe
+randomFog.exe
+
+fluidsGL.exe
+fluidsD3D9.exe
+oceanFFT.exe
+nbody.exe
+particles.exe
+smokeParticles.exe

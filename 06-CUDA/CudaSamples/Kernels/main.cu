@@ -82,7 +82,7 @@ void vectorSummExample()
 		fprintf(stderr, "cudaMemcpy failed!");
 		goto Error;
 	}
-	vectorSummKernel << <size, 1 >> > (dev_c, dev_a, dev_b, size);
+	vectorSummBlocksKernel << <size, 1 >> > (dev_c, dev_a, dev_b, size);
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess)
 	{
