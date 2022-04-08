@@ -1,0 +1,159 @@
+//#include "cuda_runtime.h"
+//#include "device_launch_parameters.h"
+#include <stdio.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/sort.h>
+#include <thrust/functional.h>
+#include <thrust/execution_policy.h>
+#include <thrust/generate.h>
+#include <list>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <ctime>
+#define SIZE 100000
+struct saxpy_functor 
+{ 
+	saxpy_functor() {}
+	__host__ __device__ float operator()(const float& x, const float& y) const 
+	{ 
+		return x * y; 
+	} 
+};
+void summ_fast(thrust::device_vector<float>& X, thrust::device_vector<float>& Y, thrust::device_vector<float>& Z)
+{ 
+	thrust::transform(X.begin(), X.end(), Y.begin(), Z.begin(), thrust::multiplies<float>());
+	//thrust::transform(X.begin(), X.end(), Y.begin(), Z.begin(), saxpy_functor());
+} 
+void example1()
+{
+	std::cout << "example1" << std::endl;
+	thrust::host_vector<int> h_vec(3);
+	thrust::generate(h_vec.begin(), h_vec.end(), rand);
+	for (unsigned int i = 0; i < h_vec.size(); i++)
+	{
+		std::cout << "Generate Host_vector[" << i << "] = " << h_vec[i] << std::endl;
+	}
+	thrust::device_vector<int> d_vec = h_vec;
+	thrust::sort(d_vec.begin(), d_vec.end());
+	//thrust::copy(d_vec.begin(), d_vec.end(), h_vec.begin());
+	for (unsigned int i = 0; i < d_vec.size(); i++)
+	{
+		std::cout << "Sort Device_vector[" << i << "] = " << d_vec[i] << std::endl;
+	}
+	d_vec[0] = 9999;
+	for (unsigned int i = 0; i < d_vec.size(); i++)
+	{
+		std::cout << "Modified Device_vector[" << i << "] = " << d_vec[i] << std::endl;
+	}
+}
+void example2()
+{
+	std::cout << "example2" << std::endl;
+	std::list<int> stl_list; 
+	stl_list.push_back(10); 
+	stl_list.push_back(20); 
+	stl_list.push_back(30); 
+	thrust::device_vector<int> D(stl_list.begin(), stl_list.end()); 
+	for (unsigned int i = 0; i < D.size(); i++)
+	{
+		std::cout << "From list:Device_vector[" << i << "] = " << D[i] << std::endl;
+	}
+	std::vector<int> stl_vector(D.size()); 
+	thrust::copy(D.begin(), D.end(), stl_vector.begin());
+	for (unsigned int i = 0; i < D.size(); i++)
+	{
+		std::cout << "STL Vector from Device_vector[" << i << "] = " << D[i] << std::endl;
+	}
+}
+void hard_job_device()
+{
+	std::cout << "HARD JOB DEVICE" << std::endl;
+	clock_t start = clock();
+	/*
+	thrust::host_vector<float> h_a(SIZE);
+	thrust::host_vector<float> h_b(SIZE);
+	thrust::generate(h_a.begin(), h_a.end(), rand);
+	thrust::generate(h_b.begin(), h_b.end(), rand);
+	thrust::device_vector<float> d_a(SIZE);
+	thrust::device_vector<float> d_b(SIZE);
+	d_a = h_a;
+	d_b = h_b;
+	*/
+	thrust::device_vector<float> d_a(SIZE);
+	thrust::device_vector<float> d_b(SIZE);
+	thrust::device_vector<float> d_c(SIZE);
+	//thrust::generate(thrust::device,d_a.begin(), d_a.end(), rand);
+	//thrust::generate(thrust::device,d_b.begin(), d_b.end(), rand);
+	thrust::sequence(d_a.begin(), d_a.end());
+	thrust::sequence(d_b.begin(), d_b.end());
+	for (unsigned int i = 0; i < SIZE; i++)
+	{
+		summ_fast(d_a, d_b, d_c);
+	}
+	clock_t end = clock() - start;
+	std::cout << " thrust summ " << (float)end / CLOCKS_PER_SEC << " sec" << std::endl;
+	if (SIZE < 10)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			std::cout << "RESULT:" << std::endl << "D_c[" << i << "] = " << d_c[i] << std::endl;
+		}
+	}
+}
+void hard_job_cpu()
+{
+	std::cout << "HARD JOB CPU" << std::endl;
+	clock_t start = clock();
+	std::vector<float> a(SIZE);
+	std::vector<float> b(SIZE);
+	std::vector<float> c(SIZE);
+	for (unsigned int i = 0; i < SIZE; i++)
+	{
+		a[i] = rand() % SIZE;
+		b[i] = rand() % SIZE;
+	}
+	if (SIZE < 10)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			std::cout << "Hard job a[" << i << "] = " << a[i] << std::endl;
+		}
+	}
+	if (SIZE < 10)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			std::cout << "Hard job b[" << i << "] = " << b[i] << std::endl;
+		}
+	}
+	for (unsigned int j = 0; j < SIZE; j++)
+	{
+		/*
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			c[i] = a[i] * b[i];
+		}
+		*/
+		std::transform(a.begin(), a.end(), b.begin(), c.begin(), std::multiplies<float>());
+	}
+	//std::transform(a.begin(), a.end(), b.begin(), c.begin(), std::multiplies<float>());
+	clock_t end = clock() - start;
+	std::cout << " STL summ " << (float)end / CLOCKS_PER_SEC << " sec" << std::endl;
+	if (SIZE < 10)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			std::cout << "RESULT:" << std::endl << "c[" << i << "] = " << c[i] << std::endl;
+		}
+	}
+}
+int main(void)
+{
+	example1();
+	example2();
+	hard_job_device();
+	hard_job_cpu();
+	return 0;
+}
