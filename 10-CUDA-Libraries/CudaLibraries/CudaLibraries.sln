@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cublas", "Cublas\Cublas.vcxproj", "{E0FB2F72-FABE-48C8-9E2F-B2FCC059C9DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Thrust", "Thrust\Thrust.vcxproj", "{1E26003A-AB6D-4780-844D-2417B0134771}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{E0FB2F72-FABE-48C8-9E2F-B2FCC059C9DD}.Release|x64.Build.0 = Release|x64
 		{E0FB2F72-FABE-48C8-9E2F-B2FCC059C9DD}.Release|x86.ActiveCfg = Release|Win32
 		{E0FB2F72-FABE-48C8-9E2F-B2FCC059C9DD}.Release|x86.Build.0 = Release|Win32
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Debug|x64.ActiveCfg = Debug|x64
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Debug|x64.Build.0 = Debug|x64
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Debug|x86.ActiveCfg = Debug|Win32
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Debug|x86.Build.0 = Debug|Win32
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Release|x64.ActiveCfg = Release|x64
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Release|x64.Build.0 = Release|x64
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Release|x86.ActiveCfg = Release|Win32
+		{1E26003A-AB6D-4780-844D-2417B0134771}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

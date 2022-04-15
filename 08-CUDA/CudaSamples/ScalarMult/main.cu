@@ -57,6 +57,7 @@ int main(void)
 	Error(cudaMemcpy(devA, a, N * sizeof(float), cudaMemcpyHostToDevice));
 	Error(cudaMemcpy(devB, b, N * sizeof(float), cudaMemcpyHostToDevice));
 	scalarMultKernel << <blocksPerGrid, threadsPerBlock >> > (devA, devB, devPartialC);
+	Error(cudaDeviceSynchronize());
 	Error(cudaMemcpy(partialC, devPartialC, blocksPerGrid * sizeof(float), cudaMemcpyDeviceToHost));
 	c = 0;
 	for (int i = 0; i < blocksPerGrid; i++)

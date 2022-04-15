@@ -25,6 +25,7 @@ void vectorSummExample()
 	cudaMemcpy(dev_b, b, SIZE * sizeof(int), cudaMemcpyHostToDevice);
 
 	vectorSummThreadsKernel << <1, SIZE >> > (dev_a, dev_b, dev_c, SIZE);
+	cudaDeviceSynchronize();
 	cudaMemcpy(c, dev_c, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
 	printVectorSumm(a, b, c, SIZE);
 

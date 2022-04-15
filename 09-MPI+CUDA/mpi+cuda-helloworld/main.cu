@@ -40,7 +40,7 @@ int main(void)
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Get_processor_name(name, &length);
-	std::cout << "Process " << rank << " of " << size << " is running on " << name << std::endl;
+	printf("process %d of %d is running on %s\n", rank, size, name);
 	cudaError_t cudaStatus;
 	cudaStatus = cudaGetDeviceCount(&count);
 	if (cudaStatus != cudaSuccess)
@@ -61,6 +61,7 @@ int main(void)
 			DeviceOutput(prop);
 	}
 	kernel << <2, 2 >> > ();
+	cudaDeviceSynchronize();
 	MPI_Finalize();
 	return 0;
 }
