@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
 	std::vector<cl::Platform> all_platforms;
 	cl::Platform::get(&all_platforms);
-	if (all_platforms.size() == 0)
+	if (all_platforms.empty())
 	{
 		std::cout << "No platforms found. Check OpenCL installation." << std::endl;
 		exit(-1);
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 		if (all_devices.empty())
 		{
 			std::cout << "No devices found. Check OpenCL installation!" << std::endl;
-			exit(-1);
+			continue;
 		}
 		std::cout << "Find " << all_devices.size() << " devices on this platform." << std::endl;
 		for (size_t j = 0; j < all_devices.size(); j++)

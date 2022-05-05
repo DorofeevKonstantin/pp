@@ -42,7 +42,6 @@ int main(int argc, char* argv[])
 {
 	char plat_name[50], dev_name[50], plat_version[50], dev_version[50];
 	int choise = 0, error = 0, gpu_device_index = -1;
-	int int_value = 15;
 	cl_uint num_platforms = 0, num_devices = 0;
 	cl_ulong global_mem_size;
 	cl_device_type dev_type;
@@ -82,26 +81,27 @@ int main(int argc, char* argv[])
 	cl_program program = clCreateProgramWithSource(context, 1, &constCode, NULL, NULL);
 	clBuildProgram(program, 0, NULL, "", NULL, NULL);
 	size_t logSize;
-	clGetProgramBuildInfo(program, devices[gpu_device_index], CL_PROGRAM_BUILD_LOG, 0, NULL, &logSize);
-	char* messages = (char*)malloc((1 + logSize) * sizeof(char));
-	clGetProgramBuildInfo(program, devices[gpu_device_index], CL_PROGRAM_BUILD_LOG, logSize, messages, NULL);
-	messages[logSize] = '\0';
-	if (logSize > 10) { printf(">>> Compiler message: %s\n", messages); }
-	free(messages);
+	cl_int buildResult = clGetProgramBuildInfo(program, devices[gpu_device_index], CL_PROGRAM_BUILD_LOG, 0, NULL, &logSize);
+	char* logInfo = (char*)malloc((1 + logSize) * sizeof(char));
+	buildResult = clGetProgramBuildInfo(program, devices[gpu_device_index], CL_PROGRAM_BUILD_LOG, logSize, logInfo, NULL);
+	logInfo[logSize] = '\0';
+	if (buildResult != CL_SUCCESS)
+		printf("Error build info:\n%s\n", logInfo);
+	free(logInfo);
 	//cl_mem value = clCreateBuffer(context, CL_MEM_READ_ONLY, sizeof(int), NULL, NULL);
 	//clEnqueueWriteBuffer(queue, value, CL_TRUE, 0, sizeof(int), &int_value, 0, NULL, NULL);
 	cl_kernel kernel = clCreateKernel(program, "simple_kernel", NULL);
+	int int_value = 15;
 	clSetKernelArg(kernel, 0, sizeof(cl_int), (void*)&int_value);
 	printf("Starting simple_kernel.\n");
 	size_t global[] = { 4,4 };
-	size_t local[] = { 2,2};
+	size_t local[] = { 2,2 };
 	cl_int result = clEnqueueNDRangeKernel(queue, kernel, 2, NULL, global, local, 0, NULL, &event);
-	//CL_INVALID_GLOBAL_OFFSET
 	clWaitForEvents(1, &event);
 	//clReleaseMemObject(value);
-	clReleaseCommandQueue(queue);
-	clReleaseContext(context);
-	clReleaseProgram(program);
 	clReleaseKernel(kernel);
+	clReleaseCommandQueue(queue);
+	clReleaseProgram(program);
+	clReleaseContext(context);
 	return 0;
 }

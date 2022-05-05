@@ -1,0 +1,158 @@
+#include <chrono>
+#include <thread>
+
+#include <CL/cl.hpp>
+
+#include "popl/popl.hpp"
+#include "bmp.hpp"
+
+const char* filename = "julia.bmp";
+float cr = -0.123f;
+float ci = 0.745f;
+
+using namespace std::chrono_literals;
+
+static const char kernelString[] = R"CLC(
+kernel void Julia( global uchar4* dst, float cr, float ci )
+{
+    const float cMinX = -1.5f;
+    const float cMaxX =  1.5f;
+    const float cMinY = -1.5f;
+    const float cMaxY =  1.5f;
+
+    const int cWidth = get_global_size(0);
+    const int cIterations = 16;
+
+    int x = (int)get_global_id(0);
+    int y = (int)get_global_id(1);
+
+    float a = x * ( cMaxX - cMinX ) / cWidth + cMinX;
+    float b = y * ( cMaxY - cMinY ) / cWidth + cMinY;
+
+    float result = 0.0f;
+    const float thresholdSquared = cIterations * cIterations / 64.0f;
+
+    for( int i = 0; i < cIterations; i++ ) {
+        float aa = a * a;
+        float bb = b * b;
+
+        float magnitudeSquared = aa + bb;
+        if( magnitudeSquared >= thresholdSquared ) {
+            break;
+        }
+
+        result += 1.0f / cIterations;
+        b = 2 * a * b + ci;
+        a = aa - bb + cr;
+    }
+
+    result = max( result, 0.0f );
+    result = min( result, 1.0f );
+
+    // BGRA
+    float4 color = (float4)( 1.0f, sqrt(result), result, 1.0f );
+
+    dst[ y * cWidth + x ] = convert_uchar4(color * 255.0f);
+}
+)CLC";
+
+int main(int argc, char** argv)
+{
+	for (size_t i = 0; i < 100; i++)
+	{
+		int platformIndex = 1;
+		int deviceIndex = 0;
+		size_t iterations = 16;
+		size_t gwx = 512;
+		size_t gwy = 512;
+		size_t lwx = 0;
+		size_t lwy = 0;
+		{
+			popl::OptionParser op("Supported Options");
+			op.add<popl::Value<int>>("p", "platform", "Platform Index", platformIndex, &platformIndex);
+			op.add<popl::Value<int>>("d", "device", "Device Index", deviceIndex, &deviceIndex);
+			op.add<popl::Value<size_t>>("i", "iterations", "Iterations", iterations, &iterations);
+			op.add<popl::Value<size_t>>("", "gwx", "Global Work Size X AKA Image Width", gwx, &gwx);
+			op.add<popl::Value<size_t>>("", "gwy", "Global Work Size Y AKA Image Height", gwy, &gwy);
+			op.add<popl::Value<size_t>>("", "lwx", "Local Work Size X", lwx, &lwx);
+			op.add<popl::Value<size_t>>("", "lwy", "Local Work Size Y", lwy, &lwy);
+
+			bool printUsage = false;
+			try {
+				op.parse(argc, argv);
+			}
+			catch (std::exception& e) {
+				fprintf(stderr, "Error: %s\n\n", e.what());
+				printUsage = true;
+			}
+
+			if (printUsage || !op.unknown_options().empty() || !op.non_option_args().empty()) {
+				fprintf(stderr,
+					"Usage: julia [options]\n"
+					"%s", op.help().c_str());
+				return -1;
+			}
+		}
+		std::vector<cl::Platform> platforms;
+		cl::Platform::get(&platforms);
+		printf("Running on platform: %s\n",
+			platforms[platformIndex].getInfo<CL_PLATFORM_NAME>().c_str());
+		std::vector<cl::Device> devices;
+		platforms[platformIndex].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+		printf("Running on device: %s\n",
+			devices[deviceIndex].getInfo<CL_DEVICE_NAME>().c_str());
+		cl::Context context{ devices[deviceIndex] };
+		cl::CommandQueue commandQueue = cl::CommandQueue{ context, devices[deviceIndex] };
+		cl::Program program{ context, kernelString };
+		program.build();
+		cl::Kernel kernel = cl::Kernel{ program, "Julia" };
+		cl::Buffer deviceMemDst = cl::Buffer{
+			context,
+			CL_MEM_ALLOC_HOST_PTR,
+			gwx * gwy * sizeof(cl_uchar4) };
+		kernel.setArg(0, deviceMemDst);
+		kernel.setArg(1, cr);
+		kernel.setArg(2, ci);
+		cl::NDRange lws;
+		printf("Executing the kernel %d times\n", (int)iterations);
+		printf("Global Work Size = ( %d, %d )\n", (int)gwx, (int)gwy);
+		if (lwx > 0 && lwy > 0)
+		{
+			printf("Local Work Size = ( %d, %d )\n", (int)lwx, (int)lwy);
+			lws = cl::NDRange{ lwx, lwy };
+		}
+		else
+		{
+			printf("Local work size = NULL\n");
+		}
+		commandQueue.finish();
+		auto start = std::chrono::system_clock::now();
+		for (size_t i = 0; i < iterations; i++)
+		{
+			commandQueue.enqueueNDRangeKernel(
+				kernel,
+				cl::NullRange,
+				cl::NDRange{ gwx, gwy },
+				lws);
+		}
+		commandQueue.finish();
+		auto end = std::chrono::system_clock::now();
+		std::chrono::duration<float> elapsed_seconds = end - start;
+		printf("Finished in %f seconds\n", elapsed_seconds.count());
+		auto buf = reinterpret_cast<const uint32_t*>(
+			commandQueue.enqueueMapBuffer(
+				deviceMemDst,
+				CL_TRUE,
+				CL_MAP_READ,
+				0,
+				gwx * gwy * sizeof(cl_uchar4)));
+
+		BMP::save_image(buf, gwx, gwy, filename);
+		printf("Wrote image file %s\n", filename);
+		commandQueue.enqueueUnmapMemObject(deviceMemDst, (void*)buf);
+		cr += 0.01f;
+		//ci += 0.01f;
+		std::this_thread::sleep_for(100ms);
+	}
+	return 0;
+}

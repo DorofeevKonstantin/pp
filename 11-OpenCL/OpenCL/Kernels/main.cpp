@@ -6,7 +6,7 @@ std::string kernel_code =
 "   __kernel void simple_kernel(const int value, global int* mass)				"
 "	{																			"
 "		printf(\"Hello from kernel %d\\n\", get_global_id(0));					"
-"		printf(\"kernel value = %d\\n\", value );								"
+"		printf(\"kernel value = %d\\n\", value);								"
 "		printf(\"mass = %d\\n\", mass[get_global_id(0)] );						"
 "   }																			";
 
