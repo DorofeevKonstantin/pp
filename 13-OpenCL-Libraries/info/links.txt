@@ -1,0 +1,35 @@
+https://github.com/OpenCL/OpenCL/blob/master/OpenCL.md#S-libraries
+https://www.iwocl.org/resources/opencl-libraries-and-toolkits/
+https://streamhpc.com/blog/2014-01-16/opencl-alternatives-for-cuda-linear-algebra-libraries/
+
+С кодом:
+1.https://github.com/clMathLibraries/clBLAS
+2.https://github.com/arrayfire/arrayfire
+3.https://github.com/HandsOnOpenCL/Exercises-Solutions/blob/master/Solutions/Exercise13/gameoflife.cl
+
+Просто:
+https://github.com/boostorg/compute/
+https://github.com/ddemidov/vexcl
+http://viennacl.sourceforge.net/viennacl-about.html
+https://github.com/bulletphysics/bullet3
+
+
+Thrust / Boost.Compute / AMD's Bolt / Microsoft C++ AMP / VexCL.
+In short, from the user standpoint Thrust, Boost.Compute, AMD's Bolt and probably Microsoft's C++ AMP all implement an STL-like API, while VexCL is an expression template based library that is closer to Eigen in nature. I believe the main difference between the STL-like libraries is their portability:
+
+Thrust only supports NVIDIA GPUs, but may also work on CPUs through its OpenMP and TBB backends.
+Bolt uses AMD extensions to OpenCL which are only available on AMD GPUs. It also provides Microsoft C++ AMP and Intel TBB backends.
+The only compiler that supports Microsoft C++ AMP is Microsoft Visual C++ (although the work on Bringing C++AMP Beyond Windows is being done).
+Boost.Compute seems to be the most portable solution of those, as it is based on standard OpenCL.
+Again, all of those libraries are trying to implement an STL-like interface, so they have very broad applicability. VexCL was developed with scientific computing in mind. If Boost.Compute was developed a bit earlier, I could probably base VexCL on top of it :). Another library for scientific computing worth looking at is ViennaCL, a free open-source linear algebra library for computations on many-core architectures (GPUs, MIC) and multi-core CPUs. Have a look at [1] for the comparison of VexCL, ViennaCL, CMTL4 and Thrust for that field.
+
+Regarding the quoted inability of Thrust developers to add an OpenCL backend: Thrust, VexCL and Boost.Compute (I am not familiar with the internals of other libraries) all use metaprogramming techniques to do what they do. But since CUDA supports C++ templates, the job of Thrust developers is probably a bit easier: they have to write metaprograms that generate CUDA programs with help of C++ compiler. VexCL and Boost.Compute authors write metaprograms that generate programs that generate OpenCL source code. Have a look at the slides where I tried to explain how VexCL is implemented. So I agree that current Thrust's design prohibits them adding an OpenCL backend.
+
+[1] Denis Demidov, Karsten Ahnert, Karl Rupp, Peter Gottschling, Programming CUDA and OpenCL: A Case Study Using Modern C++ Libraries, SIAM J. Sci. Comput., 35(5), C453–C472. (an arXiv version is also available).
+
+Update: @gnzlbg commented that there is no support for C++ functors and lambdas in OpenCL-based libraries. And indeed, OpenCL is based on C99 and is compiled from sources stored in strings at runtime, so there is no easy way to fully interact with C++ classes. But to be fair, OpenCL-based libraries do support user-based functions and even lambdas to some extent.
+
+Boost.Compute provides its own implementation of simple lambdas (based on Boost.Proto), and allows to interact with user-defined structs through BOOST_COMPUTE_ADAPT_STRUCT and BOOST_COMPUTE_CLOSURE macros.
+VexCL provides linear-algebra-like DSL (also based on Boost.Proto), and also supports conversion of generic C++ algorithms and functors (and even Boost.Phoenix lambdas) to OpenCL functions (with restrictions).
+I believe AMD's Bolt does support user-defined functors through its C++ for OpenCL extension magic.
+Having said that, CUDA-based libraries (and may be C++ AMP) have an obvious advantage of actual compile-time compiler (can you even say that?), so the integration with user code can be much tighter.
